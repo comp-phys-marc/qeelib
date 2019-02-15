@@ -1,6 +1,6 @@
-from coefficient import Coefficient
-from state import State, one, zero
-from superimposed_states import States
+from ..coefficient import Coefficient
+from ..state import State, one, zero
+from ..superimposed_states import States
 from IPython.utils.capture import capture_output
 
 def teleportation():

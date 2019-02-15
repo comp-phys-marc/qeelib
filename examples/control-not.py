@@ -1,6 +1,6 @@
-from coefficient import Coefficient
-from state import State
-from superimposed_states import States
+from ..coefficient import Coefficient
+from ..state import State
+from ..superimposed_states import States
 
 def control_not():
     initial_coeff = Coefficient(magnitude=1.00, imaginary=False)
