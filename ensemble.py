@@ -1,6 +1,6 @@
 import copy
-from state import State, ONE, ZERO
-from superimposed_states import States
+from .state import State, ONE, ZERO
+from .superimposed_states import States
 
 
 class Ensemble:

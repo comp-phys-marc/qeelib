@@ -2,10 +2,10 @@ import re
 from itertools import zip_longest
 from .patterns import INCLUDE, SEMICOLON, QREG, CREG, HEADER, BARRIER, MEASURE, \
     CONTROL_X, PAULI_X, PAULI_Y, PAULI_Z, HADAMARD, SPACE, ASSIGN, OPEN_BRACKET
-from superimposed_states import States
-from state import State, ZERO
-from ensemble import Ensemble
-from coefficient import Coefficient
+from ..superimposed_states import States
+from ..state import State, ZERO
+from ..ensemble import Ensemble
+from ..coefficient import Coefficient
 
 
 class UnsupportedInputException(Exception):

@@ -2,8 +2,8 @@ from functools import wraps, partial
 import random
 import copy
 from math import sqrt
-from state import State, ONE, ZERO
-from coefficient import Coefficient, ComplexCoefficient
+from .state import State, ONE, ZERO
+from .coefficient import Coefficient, ComplexCoefficient
 
 
 def normalize_print_and_get_requirements(func):
