@@ -53,11 +53,11 @@ class Ensemble:
         return self.subsystems[target_system]
 
     def print_density_matrices(self):
-        for subsystem in self.subsystems:
-            print("|{0}> matrices:".format(subsystem.symbol))
-            subsystem.print_density_matrices()
+        for symbol in self.subsystems:
+            print("|{0}> matrices:".format(symbol))
+            self.subsystems[symbol].print_density_matrices()
 
     def print_max_requirements(self):
-        for subsystem in self.subsystems:
-            print("|{0}> requirements:".format(subsystem.symbol))
-            subsystem.print_max_requirements()
+        for symbol in self.subsystems:
+            print("|{0}> requirements:".format(symbol))
+            self.subsystems[symbol].print_max_requirements()
