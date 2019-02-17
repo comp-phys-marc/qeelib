@@ -1,6 +1,7 @@
 import copy
 
-class Coefficient():
+
+class Coefficient:
     
     def __init__(self, magnitude=0.00, imaginary=False):
         
@@ -44,8 +45,32 @@ class Coefficient():
                 result.set_real_component(new_real_component)
                 return result
         else:
-            raise ValueError("adding coefficient to object of incorrect type was attempted")  
-    
+            raise ValueError("adding coefficient to object of incorrect type was attempted")
+
+    def multiply(self, other):
+        if isinstance(other, Coefficient):
+            if other.get_imaginary() == self.imaginary:
+                new_imaginary = False
+                new_magnitude = self.magnitude * other.get_magnitude()
+                new_coeff = Coefficient(magnitude=new_magnitude, imaginary=new_imaginary)
+                if self.imaginary:
+                    new_coeff.negate_magnitude()
+                return new_coeff
+            elif self.imaginary != other.get_imaginary():
+                new_imaginary = True
+                new_magnitude = self.magnitude * other.get_magnitude()
+                return Coefficient(magnitude=new_magnitude, imaginary=new_imaginary)
+        elif isinstance(other, ComplexCoefficient):
+            new_imaginary_component = other.get_imaginary_component().multiply(self)
+            new_real_component = other.get_real_component().multiply(self)
+            result = copy.deepcopy(other)
+            result.set_imaginary_component(new_imaginary_component)
+            result.set_real_component(new_real_component)
+            return result
+        else:
+            raise ValueError("adding coefficient to object of incorrect type was attempted")
+
+
     def get_magnitude(self):
         return self.magnitude
     
@@ -91,7 +116,7 @@ class Coefficient():
         print(" {0} {1}{2:.3f}".format('-' if self.get_magnitude() < 0 else '+', 'i' if self.get_imaginary() else '', abs(self.get_magnitude())), end='')
         
         
-class ComplexCoefficient():
+class ComplexCoefficient:
 
     def __init__(self, real_component=None, imaginary_component=None):
         
@@ -116,17 +141,27 @@ class ComplexCoefficient():
         if isinstance(other, ComplexCoefficient):
             new_imaginary_component = other.get_imaginary_component().add(self.imaginary_component)
             new_real_component = self.real_component.add(other.get_real_component())
-            return Coefficient(real_component=new_real_component, imaginary_component=new_imaginary_component)
+            return ComplexCoefficient(real_component=new_real_component, imaginary_component=new_imaginary_component)
         elif isinstance(other, Coefficient):
             if other.get_imaginary() == True:
                 new_imaginary_component = other.add(self.imaginary_component)
-                return Coefficient(real_component=self.real_component, imaginary_component=new_imaginary_component)
+                return ComplexCoefficient(real_component=self.real_component, imaginary_component=new_imaginary_component)
             elif other.get_imaginary() == False:
                 new_real_component = other.add(self.real_component)
-                return Coefficient(real_component=new_real_component, imaginary_component=self.imaginary_component)
+                return ComplexCoefficient(real_component=new_real_component, imaginary_component=self.imaginary_component)
         else:
-            raise ValueError("adding a complex coefficient with an object of incorrect type was attempted") 
-    
+            raise ValueError("adding a complex coefficient with an object of incorrect type was attempted")
+
+    def multiply(self, other):
+        if isinstance(other, ComplexCoefficient):
+            new_imaginary_component = other.get_real_component().multiply(self.imaginary_component).add(other.get_imaginary_component().multiply(self.real_component))
+            new_real_component = other.get_real_component().multiply(self.real_component).add(other.get_imaginary_component().multiply(self.imaginary_component))
+            return ComplexCoefficient(real_component=new_real_component, imaginary_component=new_imaginary_component)
+        elif isinstance(other, Coefficient):
+            return other.multiply(self)
+        else:
+            raise ValueError("adding a complex coefficient with an object of incorrect type was attempted")
+
     def get_real_component(self):
         return self.real_component
     

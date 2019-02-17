@@ -1,8 +1,8 @@
-from coefficient import Coefficient, ComplexCoefficient
 import copy
+from coefficient import Coefficient, ComplexCoefficient
 
-zero = "0"
-one = "1"
+ZERO = "0"
+ONE = "1"
 
 
 class State:
@@ -27,7 +27,7 @@ class State:
         if isinstance(val, str):
             self.val = val
             for qubit in val:
-                if not (qubit in [zero, one]):
+                if not (qubit in [ZERO, ONE]):
                     self.val = None
                     raise ValueError("state value {0} is not entirely 1's and 0's".format(val))
                     
@@ -45,7 +45,7 @@ class State:
         return self
     
     def cx(self, source, target):
-        new_target = str(int(not int(self.val[target]))) if self.val[source] == one else self.val[target]
+        new_target = str(int(not int(self.val[target]))) if self.val[source] == ONE else self.val[target]
         self.val = self.val[0:target] + new_target + self.val[target+1:]
         return self
     
@@ -66,7 +66,7 @@ class State:
         new_state = State(new_coeff, new_val)
         new_state.x(qubit)
         
-        if self.val[qubit] == one:
+        if self.val[qubit] == ONE:
             self.coefficient.negate_magnitude()
             
         return [self, new_state]

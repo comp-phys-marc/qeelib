@@ -1,5 +1,5 @@
 from ..coefficient import Coefficient
-from ..state import State, one, zero
+from ..state import State, ONE, ZERO
 from ..superimposed_states import States
 from IPython.utils.capture import capture_output
 
@@ -17,9 +17,9 @@ def teleportation():
 
     print("Alice measures {0}, {1}\n".format(m_1, m_2))
     
-    if m_2 == one:
+    if m_2 == ONE:
         state.x(qubit=1)
-    if m_1 == one:
+    if m_1 == ONE:
         state.z(qubit=1)
         
     state.print_density_matrices()

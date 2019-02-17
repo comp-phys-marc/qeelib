@@ -1,9 +1,10 @@
-from state import State, one, zero
 from functools import wraps, partial
 import random
 import copy
 from math import sqrt
+from state import State, ONE, ZERO
 from coefficient import Coefficient, ComplexCoefficient
+
 
 def normalize_print_and_get_requirements(func):
     @wraps(func)
@@ -17,12 +18,14 @@ def normalize_print_and_get_requirements(func):
         return result
     return wrapper
 
+
 class States:
     
-    def __init__(self, state_array=[], num_qubits=1):
+    def __init__(self, state_array=[], num_qubits=1, symbol='Ψ'):
         
         self.states = []
         self.num_qubits = num_qubits
+        self.symbol = symbol
         
         for state in state_array:
             self.add_state(state)
@@ -47,9 +50,9 @@ class States:
         alpha = Coefficient()
         beta = Coefficient()
         for state in self.states:
-            if state.get_val()[qubit] == one:
+            if state.get_val()[qubit] == ONE:
                 beta = beta.add(state.get_coefficient())
-            elif state.get_val()[qubit] == zero:
+            elif state.get_val()[qubit] == ZERO:
                 alpha = alpha.add(state.get_coefficient())
         return [alpha, beta]
         
@@ -106,10 +109,10 @@ class States:
         zero_states = []
         
         for state in self.states:
-            if state.get_val()[qubit] == one:
+            if state.get_val()[qubit] == ONE:
                 one_states.append(state)
                 beta = beta.add(state.get_coefficient())
-            elif state.get_val()[qubit] == zero:
+            elif state.get_val()[qubit] == ZERO:
                 zero_states.append(state)
                 alpha = alpha.add(state.get_coefficient())
         
@@ -155,18 +158,18 @@ class States:
         zero_states = []
         
         for state in self.states:
-            if state.get_val()[qubit] == one:
+            if state.get_val()[qubit] == ONE:
                 one_states.append(state)
                 beta = beta.add(state.get_coefficient())
-            elif state.get_val()[qubit] == zero:
+            elif state.get_val()[qubit] == ZERO:
                 zero_states.append(state)
                 alpha = alpha.add(state.get_coefficient())
         
         result = self._measure(alpha.to_probability(), beta.to_probability())
         
-        if result == one:
+        if result == ONE:
             self.states = one_states
-        elif result == zero:
+        elif result == ZERO:
             self.states = zero_states
             
         return result
@@ -196,12 +199,12 @@ class States:
         cutoff = int(alpha*100)
         outcome = random.randint(0, 100)
         if outcome < cutoff:
-            return zero
+            return ZERO
         else:
-            return one
+            return ONE
         
     def print(self):
-        print("|Ψ> =", end='')
+        print("|{0}> =".format(self.symbol), end='')
         for state in self.states:
             state.print()
         print("\n")
@@ -265,5 +268,3 @@ class States:
             print("|{:5s} {:>5s}|\n|{:5s} {:>5s}|\n".format(matrix[0][0], matrix[0][1], matrix[1][0], matrix[1][1]), end='')
             print(" -         -")     
         return
-                
-        
