@@ -1,6 +1,7 @@
-from ..coefficient import Coefficient
-from ..state import Ket
-from ..state import State
+from coefficient import Coefficient
+from ket import Ket
+from state import State
+
 
 def control_not():
     initial_coeff = Coefficient(magnitude=1.00, imaginary=False)

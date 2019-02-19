@@ -1,7 +1,7 @@
-from ..coefficient import Coefficient
-from ..state import Ket, ONE, ZERO
-from ..state import State
-from IPython.utils.capture import capture_output
+from coefficient import Coefficient
+from ket import Ket, ONE
+from state import State
+
 
 def teleportation():
     initial_coeff = Coefficient(magnitude=1.00, imaginary=False)
@@ -29,4 +29,3 @@ def teleportation():
     state.print_max_requirements()
 
 teleportation()
-    

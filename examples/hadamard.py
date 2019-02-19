@@ -1,7 +1,7 @@
-from ..coefficient import Coefficient, ComplexCoefficient
-from ..state import Ket
-from ..state import State
-import math
+from coefficient import Coefficient
+from ket import Ket
+from state import State
+
 
 def hadamard(first_state, second_state, qubit):
     first_coeff = Coefficient(magnitude=1.00, imaginary=False)
