@@ -6,6 +6,7 @@ from state import State
 from ket import Ket, ZERO
 from ensemble import Ensemble
 from coefficient import Coefficient
+from profiler import Profiler
 
 
 class UnsupportedInputException(Exception):
@@ -336,6 +337,8 @@ def run_qasm(qasm):
     :returns: A Parser object containing the final contents of any classical registers,
     the sizes of each quantum register, and a reference to the final QEDlib ensemble.
     """
+    profiler = Profiler()  # initialize profiler singleton
+
     lines = qasm.replace('\n', '').split(SEMICOLON)
     parser = None
 
@@ -379,4 +382,4 @@ def run_qasm(qasm):
         else:
             raise QasmProgrammingException('QREG command not found before first QASM operation.')
 
-    return parser
+    return parser, profiler

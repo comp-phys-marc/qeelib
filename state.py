@@ -1,29 +1,9 @@
-from functools import wraps, partial
 import random
 import copy
 from math import sqrt
 from ket import Ket, ONE, ZERO
 from coefficient import Coefficient
-
-
-def normalize_print_and_get_requirements(func):
-    """
-    Provides automatic normalization, operation result printing
-    and requirement registration between state mutations.
-
-    :param func: A method intended to mutate the quantum state.
-    :return: The wrapped method with normalization, printing and requirements registration added.
-    """
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        pfunc = partial(func, *args, **kwargs)
-        result = pfunc()
-        states = args[0]
-        states.normalize()
-        states.register_requirements()
-        states.print()
-        return result
-    return wrapper
+from profiler import normalize_print_and_get_requirements
 
 
 class State:
@@ -293,26 +273,6 @@ class State:
         for ket in self.kets:
             ket.print()
         print("\n")
-        
-    def register_requirements(self):
-        """
-        Checks if the current state of the quantum system is the most expensive yet seen during runtime.
-        If it is the most expensive state, updates the resource requirements.
-        """
-        return
-        
-    def print_requirements(self):
-        """
-        Prints the requirements for maintaining the current state of the quantum system.
-        """
-        num_states = len(self.kets)
-        print("TODO")
-        
-    def print_max_requirements(self):
-        """
-        Prints the requirements for the most expensive state/operation encountered by the class during runtime.
-        """
-        print("TODO")
     
     def get_density_matrix(self, qubit):
         """
@@ -352,6 +312,26 @@ class State:
             entry11 = str(round(entry11, 3))
             
             return [[entry00, entry01], [entry10, entry11]]
+
+    def register_requirements(self):
+        """
+        Checks if the current state of the quantum system is the most expensive yet seen during runtime.
+        If it is the most expensive state, updates the resource requirements.
+        """
+        return
+
+    def print_requirements(self):
+        """
+        Prints the requirements for maintaining the current state of the quantum system.
+        """
+        num_states = len(self.kets)
+        print("TODO")
+
+    def print_max_requirements(self):
+        """
+        Prints the requirements for the most expensive state/operation encountered by the class during runtime.
+        """
+        print("TODO")
     
     def print_density_matrices(self):
         """
@@ -365,4 +345,19 @@ class State:
             print(" _         _")
             print("|{:5s} {:>5s}|\n|{:5s} {:>5s}|\n".format(matrix[0][0], matrix[0][1], matrix[1][0], matrix[1][1]), end='')
             print(" -         -")     
-        return
+
+    def print_state_vectors(self):
+        """
+        Prints the state vector for each qubit.
+        """
+        for qubit in range(self.num_qubits):
+            print("qubit {0} state vector:\n".format(qubit))
+
+            vector = self.get_components(qubit)
+            print('alpha: ', end='')
+            vector[0].print()
+            print()
+            print('beta: ', end='')
+            vector[0].print()
+            print()
+            print()
