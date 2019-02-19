@@ -1,11 +1,11 @@
 from ..coefficient import Coefficient
+from ..state import Ket
 from ..state import State
-from ..superimposed_states import States
 
 def control_not():
     initial_coeff = Coefficient(magnitude=1.00, imaginary=False)
-    initial_state = State(coeff=initial_coeff, val="101010010110")
-    state = States(state_array=[initial_state], num_qubits=12)
+    initial_state = Ket(coeff=initial_coeff, val="101010010110")
+    state = State(ket_list=[initial_state], num_qubits=12)
 
     state.cx(source=0, target=11)\
     .cx(source=11, target=8)\

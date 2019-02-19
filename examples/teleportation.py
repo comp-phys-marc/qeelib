@@ -1,12 +1,12 @@
 from ..coefficient import Coefficient
-from ..state import State, ONE, ZERO
-from ..superimposed_states import States
+from ..state import Ket, ONE, ZERO
+from ..state import State
 from IPython.utils.capture import capture_output
 
 def teleportation():
     initial_coeff = Coefficient(magnitude=1.00, imaginary=False)
-    initial_state = State(coeff=initial_coeff, val="000")
-    state = States(state_array=[initial_state], num_qubits=3)
+    initial_state = Ket(coeff=initial_coeff, val="000")
+    state = State(ket_list=[initial_state], num_qubits=3)
     
     print("State to transmit: {0}\n".format(initial_state.get_val()[2]))
         
@@ -24,7 +24,7 @@ def teleportation():
         
     state.print_density_matrices()
     
-    print("State received: {0}\n".format(state.states[0].get_val()[1]))
+    print("State received: {0}\n".format(state.kets[0].get_val()[1]))
     
     state.print_max_requirements()
 
