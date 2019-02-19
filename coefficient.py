@@ -11,7 +11,7 @@ class Coefficient:
         Initializes a coefficient.
 
         :param magnitude: The coefficient's magnitude.
-        :param imaginary: Wheether the coefficient is imaginary.
+        :param imaginary: Whether the coefficient is imaginary.
         """
         self.set_magnitude(magnitude)
         if imaginary == True:
