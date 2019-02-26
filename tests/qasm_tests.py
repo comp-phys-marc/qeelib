@@ -1,5 +1,6 @@
 import unittest
-from tests.constants import GENERAL_TEST_QASM, MEASUREMENT_TEST_QASM, EXPECTED_MEASUREMENT
+from tests.constants import GENERAL_TEST_QASM, MEASUREMENT_TEST_QASM, EXPECTED_MEASUREMENT, \
+    TEN_Q_CC_QASM_ZERO, TEN_Q_CC_QASM_ONE
 from parser.parser import run_qasm
 
 
@@ -18,3 +19,12 @@ class QasmParserTests(unittest.TestCase):
         result, performance_profile = run_qasm(MEASUREMENT_TEST_QASM)
         performance_profile.print()
         self.assertEqual(result.classical_registers, EXPECTED_MEASUREMENT)
+
+    def test_counterfeit_coin_benchmarks(self):
+        print("Testing 10 qubit benchmark circuit 0...")
+        result, performance_profile = run_qasm(TEN_Q_CC_QASM_ZERO)
+        performance_profile.print()
+
+        print("Testing 10 qubit benchmark circuit 1...")
+        result, performance_profile = run_qasm(TEN_Q_CC_QASM_ONE)
+        performance_profile.print()

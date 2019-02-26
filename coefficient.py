@@ -32,7 +32,7 @@ class Coefficient:
             return self.magnitude == other.get_real_component().get_magnitude() \
                 and (other.get_imaginary_component().get_magnitude() == 0)
         elif isinstance(other, ComplexCoefficient) and self.imaginary == True:
-            return self.imaginary == other.get_imaginary_component().get_magnitude() \
+            return self.magnitude == other.get_imaginary_component().get_magnitude() \
                 and (other.get_real_component().get_magnitude() == 0)
         else:
             raise ValueError("equating coefficient to object of incorrect type was attempted")

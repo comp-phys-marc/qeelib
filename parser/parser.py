@@ -307,7 +307,7 @@ class Parser:
             if len(qubits.keys()) == 2 and (len(qubits[registers[0]]) == len(qubits[registers[1]])):
                 for controller, controlled in zip_longest(qubits[registers[0]], qubits[registers[1]]):
                     method(registers[0], controller, registers[1], controlled)
-            elif len(qubits.keys()) == 1 and len(registers[0] == 2):
+            elif len(qubits.keys()) == 1 and len(registers[0]) == 2:
                 method(*registers[0])
 
 
@@ -324,7 +324,7 @@ def _bits_for_reg_init(line):
     operands = ''.join(elements)
 
     register_name = operands[0]
-    qubits = int(operands[2])
+    qubits = int(operands[2:-1])
 
     return qubits, register_name
 
