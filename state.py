@@ -267,7 +267,7 @@ class State:
         
     def print(self):
         """
-        Prints teh full quantum state.
+        Prints the full quantum state.
         """
         print("|{0}> =".format(self.symbol), end='')
         for ket in self.kets:
@@ -324,7 +324,6 @@ class State:
         """
         Prints the requirements for maintaining the current state of the quantum system.
         """
-        num_states = len(self.kets)
         print("TODO")
 
     def print_max_requirements(self):

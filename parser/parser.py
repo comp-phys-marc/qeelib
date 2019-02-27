@@ -64,10 +64,10 @@ class Parser:
         :param name: The name of the register.
         """
 
-        new_coeffs = [Coefficient(magnitude=1.00, imaginary=False) for q in range(qubits)]
-        new_states = [Ket(coeff=coeff, val=ZERO * qubits) for coeff in new_coeffs]
+        new_coeff = Coefficient(magnitude=1.00, imaginary=False)
+        new_ket = Ket(coeff=new_coeff, val=ZERO * qubits)
 
-        self.ensemble.add_subsystem(State(ket_list=new_states, num_qubits=qubits, symbol=name), name)
+        self.ensemble.add_subsystem(State(ket_list=[new_ket], num_qubits=qubits, symbol=name), name)
 
         self.ensemble.subsystems[name].normalize()
 
