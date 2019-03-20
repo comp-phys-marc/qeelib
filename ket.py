@@ -6,6 +6,9 @@ ONE = "1"
 
 
 class Ket:
+    """
+    A class that represents the data associated with a single ket in a quantum state.
+    """
     
     def __init__(self, coeff=None, val=None):
         """
@@ -111,6 +114,17 @@ class Ket:
         """
         if int(self.val[qubit]) == 1:
             self.coefficient.negate_magnitude()
+        return self
+
+    def s(self, qubit):
+        """
+        Performs an S phase shift gate on the target qubit.
+
+        :param qubit: The target qubit.
+        :return: The ket after the operation.
+        """
+        if int(self.val[qubit]) == 1:
+            self.coefficient.multiply_by_i()
         return self
     
     def y(self, qubit):

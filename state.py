@@ -136,6 +136,23 @@ class State:
             ket.print()
             print("\n")
         return self
+
+    @normalize_print_and_get_requirements
+    def s(self, qubit):
+        """
+        Performs an S phase shift gate on the target qubit.
+
+        :param qubit: The target qubit.
+        :return: The full quantum state after the operation.
+        """
+        for ket in self.kets:
+            print("s ({0})".format(qubit), end='')
+            ket.print()
+            print(" =", end='')
+            ket.s(qubit)
+            ket.print()
+            print("\n")
+        return self
             
     @normalize_print_and_get_requirements
     def h(self, qubit):
@@ -283,6 +300,7 @@ class State:
         """
             
         [alpha, beta] = self.get_components(qubit)
+
         if isinstance(beta, Coefficient) and isinstance(alpha, Coefficient):
             
             entry00 = abs(alpha.get_magnitude())**2
@@ -313,6 +331,10 @@ class State:
             
             return [[entry00, entry01], [entry10, entry11]]
 
+        else:
+            # TODO
+            return None
+
     def register_requirements(self):
         """
         Checks if the current state of the quantum system is the most expensive yet seen during runtime.
@@ -341,9 +363,10 @@ class State:
             print("qubit {0} density matrix:\n".format(qubit))
             
             matrix = self.get_density_matrix(qubit)
-            print(" _         _")
-            print("|{:5s} {:>5s}|\n|{:5s} {:>5s}|\n".format(matrix[0][0], matrix[0][1], matrix[1][0], matrix[1][1]), end='')
-            print(" -         -")     
+            if matrix:
+                print(" _         _")
+                print("|{:5s} {:>5s}|\n|{:5s} {:>5s}|\n".format(matrix[0][0], matrix[0][1], matrix[1][0], matrix[1][1]), end='')
+                print(" -         -")
 
     def print_state_vectors(self):
         """

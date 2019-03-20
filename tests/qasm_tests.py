@@ -1,6 +1,6 @@
 import unittest
 from tests.constants import GENERAL_TEST_QASM, MEASUREMENT_TEST_QASM, EXPECTED_MEASUREMENT, \
-    TEN_Q_CC_QASM_ZERO, TEN_Q_CC_QASM_ONE
+    TEN_Q_CC_QASM_ZERO, TEN_Q_CC_QASM_ONE, GROVER_TEST_QASM
 from parser.parser import run_qasm
 
 
@@ -19,6 +19,11 @@ class QasmParserTests(unittest.TestCase):
         result, performance_profile = run_qasm(MEASUREMENT_TEST_QASM)
         performance_profile.print()
         self.assertEqual(result.classical_registers, EXPECTED_MEASUREMENT)
+
+    def test_grover(self):
+        print("Testing grover search circuit...")
+        result, performance_profile = run_qasm(GROVER_TEST_QASM)
+        performance_profile.print()
 
     def test_counterfeit_coin_benchmarks(self):
         print("Testing 10 qubit benchmark circuit 0...")
