@@ -1,5 +1,5 @@
 import copy
-from ket import Ket, ONE
+from .ket import Ket, ONE
 
 
 class EntangledKet(Ket):

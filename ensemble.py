@@ -1,6 +1,6 @@
 import copy
-from entanglement import EntangledKet
-from state import State
+from .entanglement import EntangledKet
+from .state import State
 
 
 class Ensemble:
