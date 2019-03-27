@@ -11,8 +11,8 @@ COMPLEX_NEG_I = tf.dtypes.complex(0., -1.)
 COMPLEX_ONE_OVER_SQRT_TWO = tf.dtypes.complex(1/tf.math.sqrt(2.), 0.)
 COMPLEX_NEG_ONE_OVER_SQRT_TWO = tf.dtypes.complex(-1/tf.math.sqrt(2.), 0.)
 
-ZERO_STATE = tf.linalg.LinearOperatorFullMatrix([COMPLEX_ONE, COMPLEX_ZERO])
-ONE_STATE = tf.linalg.LinearOperatorFullMatrix([COMPLEX_ZERO, COMPLEX_ONE])
+ZERO_STATE = tf.Variable([COMPLEX_ONE, COMPLEX_ZERO])
+ONE_STATE = tf.Variable([COMPLEX_ZERO, COMPLEX_ONE])
 
 X = tf.linalg.LinearOperatorFullMatrix([[COMPLEX_ZERO, COMPLEX_ONE],
                                         [COMPLEX_ONE, COMPLEX_ZERO]])
