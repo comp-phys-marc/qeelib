@@ -3,6 +3,7 @@ from itertools import zip_longest
 from .patterns import INCLUDE, SEMICOLON, QREG, CREG, HEADER, BARRIER, MEASURE, \
     CONTROL_X, PAULI_X, PAULI_Y, PAULI_Z, HADAMARD, SPACE, ASSIGN, OPEN_BRACKET, S
 from ..state import State
+from ..tensor_state import TensorState
 from ..ket import Ket, ZERO
 from ..ensemble import Ensemble
 from ..coefficient import Coefficient
@@ -26,7 +27,7 @@ class Parser:
     A class that enables the parsing and execution of IBM QASM code.
     """
 
-    def __init__(self, qubits=0, q_name=None, bits=0, b_name=None):
+    def __init__(self, qubits=0, q_name=None, bits=0, b_name=None, execution_type='dirac'):
         """
         Initializes a Parser object with an optional quantum register and classical register.
 
@@ -35,6 +36,8 @@ class Parser:
         :param bits: Size of optional classical register.
         :param b_name: Name of optional classical register.
         """
+
+        self.type = execution_type
 
         self.ensemble = Ensemble()
         self._gates = {
@@ -64,12 +67,18 @@ class Parser:
         :param name: The name of the register.
         """
 
-        new_coeff = Coefficient(magnitude=1.00, imaginary=False)
-        new_ket = Ket(coeff=new_coeff, val=ZERO * qubits)
+        if self.type == 'dirac':
 
-        self.ensemble.add_subsystem(State(ket_list=[new_ket], num_qubits=qubits, symbol=name), name)
+            new_coeff = Coefficient(magnitude=1.00, imaginary=False)
+            new_ket = Ket(coeff=new_coeff, val=ZERO * qubits)
 
-        self.ensemble.subsystems[name].normalize()
+            self.ensemble.add_subsystem(State(ket_list=[new_ket], num_qubits=qubits, symbol=name), name)
+
+            self.ensemble.subsystems[name].normalize()
+
+        elif self.type == 'tensor':
+
+            self.ensemble.add_subsystem(TensorState(ket_list=[], num_qubits=qubits, symbol=name), name)
 
         self.quantum_registers[len(self.quantum_registers.keys())] = qubits
         self._quantum_register_names[name] = len(self._quantum_register_names.keys())

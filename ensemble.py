@@ -1,6 +1,7 @@
 import copy
 from .entanglement import EntangledKet
 from .state import State
+from .tensor_state import TensorState
 
 
 class Ensemble:
@@ -33,6 +34,7 @@ class Ensemble:
     def m(self, target_system, target_qubit):
         """
         Measures a qubit and collapses quantum state across subsystems accordingly.
+        Entanglement between subsystems only supported for dirac subsystems.
 
         :param target_system: The system owning the qubit to be measured.
         :param target_qubit: The qubit to be measured.
@@ -41,13 +43,15 @@ class Ensemble:
         outcome = self.subsystems[target_system].m(target_qubit)
 
         for subsystem in self.subsystems:
-            for entangled_ket in self.subsystems[subsystem].kets:
-                if isinstance(entangled_ket, EntangledKet) \
-                        and entangled_ket.is_entangled_with(target_system, target_qubit):
-                    collapse = entangled_ket.should_collapse(outcome, target_system, target_qubit)
+            if isinstance(self.subsystems[target_system], State):
+                for entangled_ket in self.subsystems[subsystem].kets:
+                    if isinstance(entangled_ket, EntangledKet) \
+                            and entangled_ket.is_entangled_with(target_system, target_qubit):
+                        collapse = entangled_ket.should_collapse(outcome, target_system, target_qubit)
 
-                    if collapse:
-                        self.subsystems[subsystem].remove_ket(entangled_ket)
+                        if collapse:
+                            if isinstance(self.subsystems[subsystem], State):
+                                self.subsystems[subsystem].remove_ket(entangled_ket)
 
         return outcome
 
@@ -61,6 +65,11 @@ class Ensemble:
         :param target_qubit: The target qubit.
         :return:
         """
+
+        if isinstance(target_system, TensorState) or isinstance(source_system, TensorState):
+            print('interaction between subsystems is not supported for tensor states')
+            return self.subsystems[target_system]
+
         alpha_source = None
         beta_source = None
 
@@ -114,7 +123,11 @@ class Ensemble:
         """
         for symbol in self.subsystems:
             print("|{0}> matrices:".format(symbol))
-            self.subsystems[symbol].print_density_matrices()
+            subsystem = self.subsystems[symbol]
+            if isinstance(subsystem, State):
+                subsystem.print_density_matrices()
+            elif isinstance(subsystem, TensorState):
+                subsystem.print()
 
     def print_max_requirements(self):
         """

@@ -27,6 +27,12 @@ class State:
         for ket in ket_list:
             self.add_ket(ket)
 
+        self.requirements = {
+            'bits': len(ket_list)*num_qubits,
+            'floats': len(ket_list)*2,
+            'flops': 0
+        }
+
     def add_ket(self, ket):
         """
         Adds a ket to the overall quantum state.
@@ -332,7 +338,6 @@ class State:
             return [[entry00, entry01], [entry10, entry11]]
 
         else:
-            # TODO
             return None
 
     def register_requirements(self):
@@ -340,19 +345,31 @@ class State:
         Checks if the current state of the quantum system is the most expensive yet seen during runtime.
         If it is the most expensive state, updates the resource requirements.
         """
+        if len(self.kets)*self.num_qubits > self.requirements['bits']:
+            self.requirements['bits'] = len(self.kets)*self.num_qubits
+
+        if len(self.kets)*2 > self.requirements['floats']:
+            self.requirements['floats'] = len(self.kets)*2
+
+        self.requirements['flops'] += len(self.kets)*2
+
         return
 
     def print_requirements(self):
         """
         Prints the requirements for maintaining the current state of the quantum system.
         """
-        print("TODO")
+        print({
+            'bits': len(self.kets) * self.num_qubits,
+            'floats': len(self.kets) * 2,
+            'flops': self.requirements['flops']
+        })
 
     def print_max_requirements(self):
         """
         Prints the requirements for the most expensive state/operation encountered by the class during runtime.
         """
-        print("TODO")
+        print(self.requirements)
     
     def print_density_matrices(self):
         """
@@ -360,10 +377,9 @@ class State:
         """
         
         for qubit in range(self.num_qubits):
-            print("qubit {0} density matrix:\n".format(qubit))
-            
             matrix = self.get_density_matrix(qubit)
             if matrix:
+                print("qubit {0} density matrix:\n".format(qubit))
                 print(" _         _")
                 print("|{:5s} {:>5s}|\n|{:5s} {:>5s}|\n".format(matrix[0][0], matrix[0][1], matrix[1][0], matrix[1][1]), end='')
                 print(" -         -")
@@ -374,7 +390,6 @@ class State:
         """
         for qubit in range(self.num_qubits):
             print("qubit {0} state vector:\n".format(qubit))
-
             vector = self.get_components(qubit)
             print('alpha: ', end='')
             vector[0].print()
