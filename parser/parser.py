@@ -88,8 +88,8 @@ class Parser:
             PAULI_Z: self.ensemble.subsystems[name].z,
             PAULI_Y: self.ensemble.subsystems[name].y,
             HADAMARD: self.ensemble.subsystems[name].h,
-            S: self.ensemble.subsystems[name].s,
-            SDG: self.ensemble.subsystems[name].sdg
+            SDG: self.ensemble.subsystems[name].sdg,
+            S: self.ensemble.subsystems[name].s
         }
 
     def add_classical_reg(self, bits, name):
