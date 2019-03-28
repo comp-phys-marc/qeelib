@@ -126,6 +126,18 @@ class Ket:
         if int(self.val[qubit]) == 1:
             self.coefficient.multiply_by_i()
         return self
+
+    def sdg(self, qubit):
+        """
+        Performs an S dagger phase shift gate on the target qubit.
+
+        :param qubit: The target qubit.
+        :return: The ket after the operation.
+        """
+        if int(self.val[qubit]) == 1:
+            self.coefficient.multiply_by_i()
+            self.coefficient.negate_magnitude()
+        return self
     
     def y(self, qubit):
         """

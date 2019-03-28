@@ -1,7 +1,7 @@
 import re
 from itertools import zip_longest
 from .patterns import INCLUDE, SEMICOLON, QREG, CREG, HEADER, BARRIER, MEASURE, \
-    CONTROL_X, PAULI_X, PAULI_Y, PAULI_Z, HADAMARD, SPACE, ASSIGN, OPEN_BRACKET, S
+    CONTROL_X, PAULI_X, PAULI_Y, PAULI_Z, HADAMARD, SPACE, ASSIGN, OPEN_BRACKET, S, SDG
 from ..state import State
 from ..tensor_state import TensorState
 from ..ket import Ket, ZERO
@@ -88,7 +88,8 @@ class Parser:
             PAULI_Z: self.ensemble.subsystems[name].z,
             PAULI_Y: self.ensemble.subsystems[name].y,
             HADAMARD: self.ensemble.subsystems[name].h,
-            S: self.ensemble.subsystems[name].s
+            S: self.ensemble.subsystems[name].s,
+            SDG: self.ensemble.subsystems[name].sdg
         }
 
     def add_classical_reg(self, bits, name):

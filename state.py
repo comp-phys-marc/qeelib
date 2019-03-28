@@ -159,6 +159,23 @@ class State:
             ket.print()
             print("\n")
         return self
+
+    @normalize_print_and_get_requirements
+    def sdg(self, qubit):
+        """
+        Performs an S dagger phase shift gate on the target qubit.
+
+        :param qubit: The target qubit.
+        :return: The full quantum state after the operation.
+        """
+        for ket in self.kets:
+            print("sdg ({0})".format(qubit), end='')
+            ket.print()
+            print(" =", end='')
+            ket.sdg(qubit)
+            ket.print()
+            print("\n")
+        return self
             
     @normalize_print_and_get_requirements
     def h(self, qubit):

@@ -26,6 +26,9 @@ Z = tf.linalg.LinearOperatorFullMatrix([[COMPLEX_ONE, COMPLEX_ZERO],
 S = tf.linalg.LinearOperatorFullMatrix([[COMPLEX_ONE, COMPLEX_ONE],
                                         [COMPLEX_ZERO, COMPLEX_I]])
 
+SDG = tf.linalg.LinearOperatorFullMatrix([[COMPLEX_ONE, COMPLEX_ONE],
+                                          [COMPLEX_ZERO, COMPLEX_NEG_I]])
+
 H = tf.linalg.LinearOperatorFullMatrix([[COMPLEX_ONE_OVER_SQRT_TWO, COMPLEX_ONE_OVER_SQRT_TWO],
                                         [COMPLEX_ONE_OVER_SQRT_TWO, COMPLEX_NEG_ONE_OVER_SQRT_TWO]])
 
@@ -149,6 +152,21 @@ class TensorState:
         :return: The full quantum state after the operation.
         """
         print("s ({0})".format(qubit), end='')
+        print(self.state, end=' ')
+        s_matrix = self._correct_dimensionality(S, qubit)
+        self.state = tf.linalg.matmul(s_matrix, self.state)
+        print(" =", end='')
+        print(self.state)
+        return self
+
+    def sdg(self, qubit):
+        """
+        Performs an S dagger phase shift gate on the target qubit.
+
+        :param qubit: The target qubit.
+        :return: The full quantum state after the operation.
+        """
+        print("sdg ({0})".format(qubit), end='')
         print(self.state, end=' ')
         s_matrix = self._correct_dimensionality(S, qubit)
         self.state = tf.linalg.matmul(s_matrix, self.state)
