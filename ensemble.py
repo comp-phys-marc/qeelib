@@ -2,6 +2,7 @@ import copy
 from .entanglement import EntangledKet
 from .state import State
 from .tensor_state import TensorState
+from .ibmqx_state import IBMQXState
 
 
 class Ensemble:
@@ -23,13 +24,20 @@ class Ensemble:
 
         :param states: The new subsystem's state.
         :param name: The name of the new subsystem.
-        :raises: ValueError
         """
 
-        if isinstance(state, State):
-            self.subsystems[name] = state
-        else:
-            raise ValueError('Attempting to add non state object to ensemble.')
+        self.subsystems[name] = state
+
+    def execute(self):
+        """
+        Executes the QASM for all IBMQX states.
+        :return:
+        """
+        for subsystem in self.subsystems:
+            if isinstance(self.subsystems[subsystem], IBMQXState):
+                print(f'executing {self.subsystems[subsystem].symbol} on {self.subsystems[subsystem].device}...')
+                result = self.subsystems[subsystem].execute()
+                print(result)
 
     def m(self, target_system, target_qubit):
         """
@@ -66,8 +74,10 @@ class Ensemble:
         :return:
         """
 
-        if isinstance(target_system, TensorState) or isinstance(source_system, TensorState):
-            print('interaction between subsystems is not supported for tensor states')
+        if isinstance(target_system, TensorState) or isinstance(source_system, TensorState) \
+                or isinstance(target_system, IBMQXState) or isinstance(source_system, IBMQXState):
+
+            print('interaction between subsystems is not supported for tensor or IBMQX states')
             return self.subsystems[target_system]
 
         alpha_source = None

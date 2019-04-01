@@ -2,6 +2,7 @@ import random
 import tensorflow as tf
 from functools import reduce
 from .ket import ONE, ZERO
+from .profiler import normalize_print_and_get_requirements
 
 COMPLEX_ZERO = tf.dtypes.complex(0., 0.)
 COMPLEX_ONE = tf.dtypes.complex(1., 0.)
@@ -99,6 +100,7 @@ class TensorState:
             [(I if q != qubit else op) for q in range(self.num_qubits)]
         )
 
+    @normalize_print_and_get_requirements
     def x(self, qubit):
         """
         Performs a Pauli X gate on the target qubit.
@@ -114,6 +116,7 @@ class TensorState:
         print(self.state)
         return self
 
+    @normalize_print_and_get_requirements
     def y(self, qubit):
         """
         Performs a Pauli Y gate on the target qubit.
@@ -129,6 +132,7 @@ class TensorState:
         print(self.state)
         return self
 
+    @normalize_print_and_get_requirements
     def z(self, qubit):
         """
         Performs a Pauli Z gate on the target qubit.
@@ -144,6 +148,7 @@ class TensorState:
         print(self.state)
         return self
 
+    @normalize_print_and_get_requirements
     def s(self, qubit):
         """
         Performs an S phase shift gate on the target qubit.
@@ -159,6 +164,7 @@ class TensorState:
         print(self.state)
         return self
 
+    @normalize_print_and_get_requirements
     def sdg(self, qubit):
         """
         Performs an S dagger phase shift gate on the target qubit.
@@ -174,6 +180,7 @@ class TensorState:
         print(self.state)
         return self
 
+    @normalize_print_and_get_requirements
     def cx(self, source, target):
         """
         Performs a Controlled X gate on the target qubit with the
@@ -200,6 +207,7 @@ class TensorState:
         print(self.state)
         return self
 
+    @normalize_print_and_get_requirements
     def h(self, qubit):
         """
         Performs a Hadamard gate on the target qubit.
@@ -236,6 +244,7 @@ class TensorState:
         self.state = tf.linalg.matmul(c_matrix, self.state)
         return outcome
 
+    @normalize_print_and_get_requirements
     def m(self, qubit):
         """
         Measures the target qubit.
@@ -313,6 +322,12 @@ class TensorState:
         Prints the requirements for the most expensive state/operation encountered by the class during runtime.
         """
         print(self.requirements)
+
+    def print_state_vectors(self):
+        pass
+
+    def normalize(self):
+        pass
 
     def print(self):
         """

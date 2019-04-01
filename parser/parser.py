@@ -4,6 +4,7 @@ from .patterns import INCLUDE, SEMICOLON, QREG, CREG, HEADER, BARRIER, MEASURE, 
     CONTROL_X, PAULI_X, PAULI_Y, PAULI_Z, HADAMARD, SPACE, ASSIGN, OPEN_BRACKET, S, SDG
 from ..state import State
 from ..tensor_state import TensorState
+from ..ibmqx_state import IBMQXState
 from ..ket import Ket, ZERO
 from ..ensemble import Ensemble
 from ..coefficient import Coefficient
@@ -79,6 +80,10 @@ class Parser:
         elif self.type == 'tensor':
 
             self.ensemble.add_subsystem(TensorState(ket_list=[], num_qubits=qubits, symbol=name), name)
+
+        elif self.type == 'ibmqx4':
+
+            self.ensemble.add_subsystem(IBMQXState(ket_list=[], num_qubits=qubits, symbol=name, device='ibmqx4'), name)
 
         self.quantum_registers[len(self.quantum_registers.keys())] = qubits
         self._quantum_register_names[name] = len(self._quantum_register_names.keys())
@@ -340,11 +345,12 @@ def _bits_for_reg_init(line):
     return qubits, register_name
 
 
-def run_qasm(qasm):
+def run_qasm(qasm, execution_type='dirac'):
     """
-    Parses a QASM code string and runs the code using a QEDlib ensemble of superimposed states.
+    Parses a QASM code string and runs the code using a QEDlib ensemble of states.
 
     :param qasm: QASM code string.
+    :param execution_Type: The backend to execute on.
     :returns: A Parser object containing the final contents of any classical registers,
     the sizes of each quantum register, and a reference to the final QEDlib ensemble.
     """
@@ -358,6 +364,23 @@ def run_qasm(qasm):
         print(f'Found header. Recognized QASM version: {header}')
     else:
         raise BadHeaderException(f'No well-formed header present at the top of the file.')
+
+    if execution_type == 'ibmqx4_immediate':  # passing off entire program execution to IBM
+
+        parser = Parser(qubits=5, q_name='q', execution_type=execution_type)
+
+        parser.ensemble.add_subsystem(
+            IBMQXState(
+                ket_list=[],
+                num_qubits=5,
+                symbol='q',
+                qasm=qasm,
+                device='ibmqx4'),
+            'q')
+
+        parser.ensemble.execute()
+
+        return parser, profiler
 
     while len(lines) > 0:
 
