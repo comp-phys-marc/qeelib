@@ -65,7 +65,6 @@ class TensorState:
         :param symbol: The identifier for this quantum state.
         :raises: ValueError
         """
-        super().__init__(ket_list, num_qubits, symbol)
 
         for ket in ket_list:
             if ONE in ket.get_val():

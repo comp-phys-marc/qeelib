@@ -21,7 +21,6 @@ class IBMQXState:
         :param device: The IBM device to execute on.
         :raises: ValueError
         """
-        super().__init__(ket_list, num_qubits, symbol)
 
         for ket in ket_list:
             if ONE in ket.get_val():
@@ -30,14 +29,14 @@ class IBMQXState:
         if num_qubits > 5 and device == 'ibmqx4':
             raise ValueError("The IBMQX4 only supports 5 qubit states")
 
-        if qasm is None:
-            self._qasm = f'OPENQASM 2.0;include "qelib1.inc";qreg {self.symbol}[{num_qubits}];creg c[{num_qubits}];'
-        else:
-            self.qasm = qasm
-
         self.num_qubits = num_qubits
         self.symbol = symbol
         self.device = device
+
+        if qasm is None:
+            self.qasm = f'OPENQASM 2.0;include "qelib1.inc";qreg {self.symbol}[{num_qubits}];creg c[{num_qubits}];'
+        else:
+            self.qasm = qasm
 
         self.requirements = {
             'qubits': self.num_qubits,
@@ -73,7 +72,7 @@ class IBMQXState:
             print("IBMQX API auth failure.")
 
     @normalize_print_and_get_requirements
-    def execute(self, shots):
+    def execute(self, shots=1024):
         """
         Executes the QASM built by calls to this object.
         :param shots:  The number of times to run the experiment on IBM's backend.

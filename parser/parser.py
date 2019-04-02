@@ -81,7 +81,7 @@ class Parser:
 
             self.ensemble.add_subsystem(TensorState(ket_list=[], num_qubits=qubits, symbol=name), name)
 
-        elif self.type == 'ibmqx4':
+        elif self.type == 'ibmqx4' or self.type == 'ibmqx4_immediate':
 
             self.ensemble.add_subsystem(IBMQXState(ket_list=[], num_qubits=qubits, symbol=name, device='ibmqx4'), name)
 
