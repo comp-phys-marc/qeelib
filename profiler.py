@@ -1,5 +1,6 @@
 import time
 from functools import wraps, partial
+from .state import State
 
 OUTPUT_HEADER = "----------------------------------------\nmethod         time\n----------------------------------------"
 
@@ -21,12 +22,12 @@ def normalize_print_and_get_requirements(func):
         end_time = time.time()
         elapsed_time = end_time - start_time
         states = args[0]
-        if states.kets is not None and len(states.kets) > 0:
+        if isinstance(states, State) and states.kets is not None and len(states.kets) > 0:
             states.normalize()
-            states.register_requirements()
-            states.print()
             states.print_density_matrices()
             states.print_state_vectors()
+        states.register_requirements()
+        states.print()
 
         Profiler().profile_efficiency(func_name, elapsed_time * 1000)
         return result
