@@ -18,9 +18,9 @@ apt-get install git
 git clone https://gitlab.com/QuantumEmulator/qedlib.git
 ```
 
-#Documentation
+# Documentation
 
-##Generating documentation
+## Generating documentation
 
 ```
 rm docs/*
@@ -28,9 +28,9 @@ python3 -m pydoc -w ./*.py
 mv ./*.html docs
 ```
 
-#Tests
+# Tests
 
-##Running tests
+## Running tests
 
 ```
 python3 ./tests/qasm_tests.py
