@@ -1,3 +1,4 @@
+import numpy as np
 from IBMQuantumExperience import IBMQuantumExperience
 from .ket import ONE
 from .profiler import normalize_print_and_get_requirements
@@ -84,6 +85,22 @@ class IBMQXState:
         return results
 
     @normalize_print_and_get_requirements
+    def barrier(self, qubit=None):
+        """
+        Applies a barrier to the circuit to disable circuit optimization.
+
+        :param qubit: The target qubit.
+        :return: The full qasm after the operation.
+        """
+        if qubit:
+            print("barrier ({0})".format(qubit), end='')
+            self.qasm = self.qasm + f'\nbarrier {self.symbol}[{qubit}];'
+        else:
+            print("barrier ({0})".format(self.symbol), end='')
+            self.qasm = self.qasm + f'\nbarrier {self.symbol};'
+        return self
+
+    @normalize_print_and_get_requirements
     def x(self, qubit):
         """
         Performs a Pauli X gate on the target qubit.
@@ -117,6 +134,38 @@ class IBMQXState:
         """
         print("z ({0})".format(qubit), end='')
         self.qasm = self.qasm + f'\nz {self.symbol}[{qubit}];'
+        return self
+
+    @normalize_print_and_get_requirements
+    def u1(self, lamb, qubit):
+        """
+        A single parameter single qubit phase gate with zero duration:
+
+        [[1,0],[0,exp(1i*lamb)]]
+
+        :param lamb: The phase parameter.
+        :param qubit: The target qubit.
+        :return: The full qasm after the operation.
+        """
+        print("u1({1}) ({0})".format(qubit, lamb), end='')
+        self.qasm = self.qasm + f'\nu1({lamb}) {self.symbol}[{qubit}];'
+        return self
+
+    @normalize_print_and_get_requirements
+    def u3(self, theta, phi, lamb, qubit):
+        """
+        A three parameter single qubit gate:
+
+        [[cos(theta/2),-exp(1i*lambda)*sin(theta/2)],[exp(1i*phi)*sin(theta/2),exp(1i*lambda+1i*phi)*cos(theta/2)]]
+
+        :param theta: The first parameter.
+        :param phi: The second parameter.
+        :param lamb: The thrid parameter.
+        :param qubit: The target qubit.
+        :return: The full qasm after the operation.
+        """
+        print("u3({1}, {2}, {3}) ({0})".format(qubit, theta, phi, lamb), end='')
+        self.qasm = self.qasm + f'\nu3({theta},{phi},{lamb}) {self.symbol}[{qubit}];'
         return self
 
     @normalize_print_and_get_requirements
@@ -208,6 +257,74 @@ class IBMQXState:
         Prints the requirements for the most expensive state/operation encountered by the class during runtime.
         """
         print(self.requirements)
+
+    def tomography(self, qubit, phases, shots):
+        """
+        Replicates the current circuit and performs measurements in each of the three orthogonal axes of the Bloch
+        sphere to determine the qubit's state.
+
+        :return: The results from each circuit.
+        """
+
+        results = []
+
+        exp_vector = range(0, phases)
+        for index in exp_vector:
+            phase = 2 * np.pi * index / (len(exp_vector) - 1)
+
+            # Measure X Axis
+            x_state = IBMQXState(
+                ket_list=[],
+                num_qubits=self.num_qubits,
+                symbol=self.symbol,
+                qasm=self.qasm,
+                device=self.device
+            )
+
+            x_state.barrier()
+            x_state.u1(phase, qubit)
+
+            x_state.barrier()
+            x_state.h(qubit)
+            x_state.m(qubit)
+
+            # Measure Y Axis
+            y_state = IBMQXState(
+                ket_list=[],
+                num_qubits=self.num_qubits,
+                symbol=self.symbol,
+                qasm=self.qasm,
+                device=self.device
+            )
+
+            y_state.barrier()
+            y_state.u1(phase, qubit)
+
+            y_state.barrier()
+            y_state.sdg(qubit)
+            y_state.h(qubit)
+            y_state.m(qubit)
+
+            # Measure Z Axis
+            z_state = IBMQXState(
+                ket_list=[],
+                num_qubits=self.num_qubits,
+                symbol=self.symbol,
+                qasm=self.qasm,
+                device=self.device
+            )
+
+            z_state.barrier()
+            z_state.u1(phase, qubit)
+
+            z_state.barrier()
+            z_state.m(qubit)
+
+            results.append(x_state.execute(shots=shots))
+            results.append(y_state.execute(shots=shots))
+            results.append(z_state.execute(shots=shots))
+
+        return results
 
     def print(self):
         """
