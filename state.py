@@ -1,9 +1,9 @@
 import random
 import copy
 from math import sqrt
-from .ket import Ket, ONE, ZERO
-from .coefficient import Coefficient
-from .profiler import normalize_print_and_get_requirements
+from ket import Ket, ONE, ZERO
+from coefficient import Coefficient
+from profiler import normalize_print_and_get_requirements
 
 
 class State:

@@ -1,7 +1,7 @@
 import numpy as np
 from IBMQuantumExperience import IBMQuantumExperience
-from .ket import ONE
-from .profiler import normalize_print_and_get_requirements
+from ket import ONE
+from profiler import normalize_print_and_get_requirements
 
 API_TOKEN = 'a0f9090f4b9b0a7f86cb31848730654bb4dbc35aab364a7d728162c96b264752d413b88daea7303c87f12e0a719345119c0f8a880a27d73b998887664a989fce'
 
