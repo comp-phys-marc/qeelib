@@ -22,8 +22,6 @@ def controlled_teleportation(shots, bell_state, charlie, theta, phi, lamb):
     # 0 corresponds to the outcome |+> and 1 corresponds to the |->
     state.h(1).m(1)
 
-    state.barrier()
-
     # Bob's U will be one of 4 gates depending on Rc and the bell measurement used
     if bell_state == 1 and charlie == 1:
         state.z(0)

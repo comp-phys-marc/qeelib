@@ -1,3 +1,4 @@
+from IPython.utils.capture import capture_output
 from coefficient import Coefficient
 from ket import Ket
 from ibmqx_state import IBMQXState as State
@@ -7,7 +8,7 @@ def ghz_communication_partial_servcer_cooperation(shots, bell_state, server, mes
 
     initial_coeff = Coefficient(magnitude=1.00, imaginary=False)
     initial_state = Ket(coeff=initial_coeff, val="00000")
-    state = State(ket_list=[initial_state], num_qubits=5)
+    state = State(ket_list=[initial_state], num_qubits=5, device="simulator")
 
     # Create GHZ state
     state.h(2).cx(2, 1).cx(1, 0)
@@ -28,9 +29,7 @@ def ghz_communication_partial_servcer_cooperation(shots, bell_state, server, mes
 
     # Server measures the state of its qubit
     # 0 corresponds to the outcome |+> and 1 corresponds to the |->
-    state.h(1).m(1)
-
-    state.barrier()
+    state.h(1)
 
     # Uj's decoding operation will be one of 4 depending on the server's publication and the Bell measurement
     if bell_state == 1 and server == 1:
@@ -62,32 +61,47 @@ def ghz_communication_partial_servcer_cooperation(shots, bell_state, server, mes
 def run_experiment():
 
     # Parameters for the states to teleport
-    messages_to_transmit = ["01", "10", "11"]
+    messages_to_transmit = ["00", "01", "10", "11"]
 
     # Run each case this many times to estimate resulting qubit
-    case_trial_array = [1024]
+    case_trial_array = [1]
 
     # Expect the server to measure this state for post selection
-    server_expect_array = [0, 1, -1]
+    server_expect_array = [0, 1]
 
     # Ui's Bell states to test
     bell_states = [1, 2, 3, 4]
 
-    for message in messages_to_transmit:
-        for i in range(len(server_expect_array)):
-            for j in range(len(case_trial_array)):
-                server_expect = server_expect_array[i]
-                shots = case_trial_array[j]
+    file = open("ghz-comm-compiled.txt", "w+")
 
-                for bell_state in bell_states:
+    with capture_output() as captured:
 
-                    exp = ghz_communication_partial_servcer_cooperation(
-                        shots,
-                        bell_state,
-                        server_expect,
-                        message
-                    )
+        for message in messages_to_transmit:
+            for i in range(len(server_expect_array)):
+                for j in range(len(case_trial_array)):
+                    server_expect = server_expect_array[i]
+                    shots = case_trial_array[j]
 
-                    print(exp)
+                    for bell_state in bell_states:
+
+                        print(
+                            "------------ message: {0}, server publication: {1}, Bell state: {2} ------------".format(
+                                message,
+                                server_expect,
+                                bell_state
+                            )
+                        )
+
+                        exp = ghz_communication_partial_servcer_cooperation(
+                            shots,
+                            bell_state,
+                            server_expect,
+                            message
+                        )
+
+                        print(exp)
+
+    readout = captured.stdout
+    file.write(readout)
 
 run_experiment()
