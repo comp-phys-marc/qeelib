@@ -32,6 +32,8 @@ class IBMQXState:
 
         if api:
             self.api = api
+        else:
+            self.api = None
 
         self.num_qubits = num_qubits
         self.symbol = symbol
