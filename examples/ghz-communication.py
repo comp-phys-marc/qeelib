@@ -7,7 +7,7 @@ def ghz_communication_partial_server_cooperation(shots, bell_state, server, mess
 
     initial_coeff = Coefficient(magnitude=1.00, imaginary=False)
     initial_state = Ket(coeff=initial_coeff, val="00000")
-    state = State(ket_list=[initial_state], num_qubits=5, device="simulator")
+    state = State(ket_list=[initial_state], num_qubits=5, device="ibmq_16_melbourne")
 
     # Create GHZ state
     state.h(2).cx(2, 1).cx(1, 0)

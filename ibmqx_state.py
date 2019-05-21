@@ -86,7 +86,10 @@ class IBMQXState:
         """
         if not self.api:
             self._connect()
-        results = self.api.run_experiment(self.qasm, self.device, shots)
+        if not self.device == 'ibmq_16_melbourne':
+            results = self.api.run_experiment(self.qasm, self.device, shots)
+        else:
+            results = self.api.run_job([{'qasm': self.qasm}], self.device, shots)
         return results
 
     @normalize_print_and_get_requirements
