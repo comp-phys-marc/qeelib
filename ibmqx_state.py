@@ -1,17 +1,17 @@
 import numpy as np
 from IBMQuantumExperience import IBMQuantumExperience
-from .ket import ONE
-from .profiler import normalize_print_and_get_requirements
+from ket import ONE
+from profiler import normalize_print_and_get_requirements
 
 API_TOKEN = 'a0f9090f4b9b0a7f86cb31848730654bb4dbc35aab364a7d728162c96b264752d413b88daea7303c87f12e0a719345119c0f8a880a27d73b998887664a989fce'
-
+# API_TOKEN = 'c05e0105601b0c1d7e68e294844fdc5615b42f53b6d6a2bb5d6181206fcaec4753276e3bf4bb1eca8cf2bbf179f15b8ecee6df026b13fb8350df2172a6af23a5'
 
 class IBMQXState:
     """
     A class that represents a quantum system being run on IBM's quantum computer platform.
     """
 
-    def __init__(self, ket_list=[], num_qubits=1, symbol='q', qasm=None, device='ibmqx4'):
+    def __init__(self, ket_list=[], num_qubits=1, symbol='q', qasm=None, device='ibmqx4', api=None):
         """
         Initializes a quantum state with the given parameters.
 
@@ -27,8 +27,13 @@ class IBMQXState:
             if ONE in ket.get_val():
                 raise ValueError("IBMQX state only supports initialization to |00...0>")
 
-        if num_qubits > 5 and device == 'ibmqx4':
-            raise ValueError("The IBMQX4 only supports 5 qubit states")
+        if num_qubits > 5 and (device in ['ibmqx4', 'ibmqx2']):
+            raise ValueError("This device only supports 5 qubit states")
+
+        if api:
+            self.api = api
+        else:
+            self.api = None
 
         self.num_qubits = num_qubits
         self.symbol = symbol
@@ -59,8 +64,7 @@ class IBMQXState:
 
         return credential
 
-    @staticmethod
-    def _connect():
+    def _connect(self):
         """
         Attempt to connect to the Quantum Experience Platform
         :return:
@@ -68,6 +72,7 @@ class IBMQXState:
         connection_success = IBMQXState._test_api_auth_token()
 
         if connection_success:
+            self.api = IBMQuantumExperience(API_TOKEN)
             print("IBMQX API auth success.")
         else:
             print("IBMQX API auth failure.")
@@ -79,9 +84,9 @@ class IBMQXState:
         :param shots:  The number of times to run the experiment on IBM's backend.
         :return:
         """
-        IBMQXState._connect()
-        api = IBMQuantumExperience(API_TOKEN)
-        results = api.run_experiment(self.qasm, self.device, shots)
+        if not self.api:
+            self._connect()
+        results = self.api.run_job([{'qasm': self.qasm}], self.device, shots)
         return results
 
     @normalize_print_and_get_requirements
@@ -268,9 +273,12 @@ class IBMQXState:
 
         results = []
 
+        self._connect()
+
         exp_vector = range(0, phases)
         for index in exp_vector:
             phase = 2 * np.pi * index / (len(exp_vector) - 1)
+            index += 1
 
             # Measure X Axis
             x_state = IBMQXState(
@@ -278,13 +286,12 @@ class IBMQXState:
                 num_qubits=self.num_qubits,
                 symbol=self.symbol,
                 qasm=self.qasm,
-                device=self.device
+                device=self.device,
+                api=self.api
             )
 
-            x_state.barrier()
             x_state.u1(phase, qubit)
 
-            x_state.barrier()
             x_state.h(qubit)
             x_state.m(qubit)
 
@@ -294,13 +301,12 @@ class IBMQXState:
                 num_qubits=self.num_qubits,
                 symbol=self.symbol,
                 qasm=self.qasm,
-                device=self.device
+                device=self.device,
+                api=self.api
             )
 
-            y_state.barrier()
             y_state.u1(phase, qubit)
 
-            y_state.barrier()
             y_state.sdg(qubit)
             y_state.h(qubit)
             y_state.m(qubit)
@@ -311,13 +317,12 @@ class IBMQXState:
                 num_qubits=self.num_qubits,
                 symbol=self.symbol,
                 qasm=self.qasm,
-                device=self.device
+                device=self.device,
+                api=self.api
             )
 
-            z_state.barrier()
             z_state.u1(phase, qubit)
 
-            z_state.barrier()
             z_state.m(qubit)
 
             results.append(x_state.execute(shots=shots))

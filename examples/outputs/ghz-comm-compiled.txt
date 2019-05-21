@@ -1,0 +1,651 @@
+------------ message: 00, server publication: 0, Bell state: 1 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+cx q[3], q[2];
+h q[3];
+h q[1];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddc8db3c4ae3006d1c1498', 'idCode': '5cddc8da3c4ae3006d1c1497', 'result': {'extraInfo': {'seed': 187531024}, 'measure': {'values': [0.13671875, 0.134765625, 0.1279296875, 0.126953125, 0.1259765625, 0.123046875, 0.1220703125, 0.1025390625], 'qubits': [0, 1, 2, 3], 'labels': ['01111', '00000', '00111', '00101', '01010', '00010', '01000', '01101']}}}
+------------ message: 00, server publication: 0, Bell state: 2 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddc8f55f0316006f4557b4', 'idCode': '5cddc8f45f0316006f4557b3', 'result': {'extraInfo': {'seed': 388817698}, 'measure': {'values': [0.1494140625, 0.1435546875, 0.138671875, 0.1337890625, 0.1162109375, 0.1123046875, 0.107421875, 0.0986328125], 'qubits': [0, 1, 2, 3], 'labels': ['01000', '01101', '00111', '00010', '00101', '01010', '00000', '01111']}}}
+------------ message: 00, server publication: 0, Bell state: 3 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+cx q[3], q[2];
+h q[3];
+h q[1];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddc90c3c4ae3006d1c149a', 'idCode': '5cddc90b3c4ae3006d1c1499', 'result': {'extraInfo': {'seed': 581383819}, 'measure': {'values': [0.134765625, 0.134765625, 0.1298828125, 0.1298828125, 0.119140625, 0.119140625, 0.1181640625, 0.1142578125], 'qubits': [0, 1, 2, 3], 'labels': ['00011', '01110', '00001', '01001', '01011', '01100', '00100', '00110']}}}
+------------ message: 00, server publication: 0, Bell state: 4 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddc92238ba7a0072ab43b8', 'idCode': '5cddc92138ba7a0072ab43b7', 'result': {'extraInfo': {'seed': 1561971148}, 'measure': {'values': [0.1455078125, 0.134765625, 0.12890625, 0.1220703125, 0.12109375, 0.1201171875, 0.115234375, 0.1123046875], 'qubits': [0, 1, 2, 3], 'labels': ['01011', '01110', '00001', '01001', '00110', '01100', '00011', '00100']}}}
+------------ message: 00, server publication: 1, Bell state: 1 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddc9365690dd006e9149d5', 'idCode': '5cddc9355690dd006e9149d4', 'result': {'extraInfo': {'seed': 3058154591}, 'measure': {'values': [0.1357421875, 0.130859375, 0.126953125, 0.125, 0.123046875, 0.1220703125, 0.12109375, 0.115234375], 'qubits': [0, 1, 2, 3], 'labels': ['00101', '00000', '00010', '01111', '01101', '01010', '01000', '00111']}}}
+------------ message: 00, server publication: 1, Bell state: 2 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+cx q[3], q[2];
+h q[3];
+h q[1];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddc948f18afc0071252b7a', 'idCode': '5cddc947f18afc0071252b79', 'result': {'extraInfo': {'seed': 1024244492}, 'measure': {'values': [0.13671875, 0.134765625, 0.1318359375, 0.1240234375, 0.123046875, 0.1171875, 0.1171875, 0.115234375], 'qubits': [0, 1, 2, 3], 'labels': ['00111', '01000', '00101', '00010', '01010', '00000', '01111', '01101']}}}
+------------ message: 00, server publication: 1, Bell state: 3 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddc96a07c35b0079853663', 'idCode': '5cddc95e07c35b0079853662', 'result': {'extraInfo': {'seed': 1580737365}, 'measure': {'values': [0.138671875, 0.1328125, 0.126953125, 0.1259765625, 0.125, 0.1220703125, 0.1142578125, 0.1142578125], 'qubits': [0, 1, 2, 3], 'labels': ['00001', '01001', '00100', '00011', '00110', '01100', '01011', '01110']}}}
+------------ message: 00, server publication: 1, Bell state: 4 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+cx q[3], q[2];
+h q[3];
+h q[1];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddc9807297c30073a2ac20', 'idCode': '5cddc97e7297c30073a2ac1f', 'result': {'extraInfo': {'seed': 2587558519}, 'measure': {'values': [0.138671875, 0.1357421875, 0.1298828125, 0.1259765625, 0.1220703125, 0.1220703125, 0.1171875, 0.1083984375], 'qubits': [0, 1, 2, 3], 'labels': ['01100', '00011', '01110', '01001', '00100', '00110', '00001', '01011']}}}
+------------ message: 01, server publication: 0, Bell state: 1 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+x q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddc99807c35b0079853665', 'idCode': '5cddc99307c35b0079853664', 'result': {'extraInfo': {'seed': 2981647427}, 'measure': {'values': [0.138671875, 0.1357421875, 0.134765625, 0.123046875, 0.12109375, 0.1181640625, 0.115234375, 0.11328125], 'qubits': [0, 1, 2, 3], 'labels': ['00011', '00100', '01100', '01110', '01011', '01001', '00110', '00001']}}}
+------------ message: 01, server publication: 0, Bell state: 2 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+x q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddc9af43835b0076fe6eba', 'idCode': '5cddc9ae43835b0076fe6eb9', 'result': {'extraInfo': {'seed': 3921096622}, 'measure': {'values': [0.1318359375, 0.1298828125, 0.1298828125, 0.126953125, 0.1259765625, 0.1220703125, 0.1171875, 0.1162109375], 'qubits': [0, 1, 2, 3], 'labels': ['01110', '00100', '01001', '01011', '00001', '00011', '01100', '00110']}}}
+------------ message: 01, server publication: 0, Bell state: 3 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+x q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddc9cd5473da0078fdf685', 'idCode': '5cddc9cc5473da0078fdf684', 'result': {'extraInfo': {'seed': 63961326}, 'measure': {'values': [0.13671875, 0.130859375, 0.130859375, 0.1298828125, 0.126953125, 0.12109375, 0.1181640625, 0.10546875], 'qubits': [0, 1, 2, 3], 'labels': ['00101', '00010', '01111', '01010', '00000', '01101', '01000', '00111']}}}
+------------ message: 01, server publication: 0, Bell state: 4 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+x q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddc9e32e91a8006fc84e9f', 'idCode': '5cddc9e22e91a8006fc84e9e', 'result': {'extraInfo': {'seed': 2040195389}, 'measure': {'values': [0.13671875, 0.1337890625, 0.130859375, 0.1259765625, 0.1240234375, 0.1220703125, 0.11328125, 0.11328125], 'qubits': [0, 1, 2, 3], 'labels': ['00101', '00000', '01111', '01010', '01101', '00010', '00111', '01000']}}}
+------------ message: 01, server publication: 1, Bell state: 1 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+x q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddc9f64013f800819cad6f', 'idCode': '5cddc9f54013f800819cad6e', 'result': {'extraInfo': {'seed': 3454518801}, 'measure': {'values': [0.140625, 0.13671875, 0.1357421875, 0.130859375, 0.1181640625, 0.1162109375, 0.1123046875, 0.109375], 'qubits': [0, 1, 2, 3], 'labels': ['01100', '01011', '00100', '00110', '00011', '01110', '00001', '01001']}}}
+------------ message: 01, server publication: 1, Bell state: 2 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+x q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddca66db2680006f138c83', 'idCode': '5cddca65db2680006f138c82', 'result': {'extraInfo': {'seed': 2274129957}, 'measure': {'values': [0.140625, 0.13671875, 0.1318359375, 0.1279296875, 0.1201171875, 0.1171875, 0.115234375, 0.1103515625], 'qubits': [0, 1, 2, 3], 'labels': ['00100', '01011', '00001', '00011', '01001', '01100', '01110', '00110']}}}
+------------ message: 01, server publication: 1, Bell state: 3 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+x q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddca732e91a8006fc84ea1', 'idCode': '5cddca722e91a8006fc84ea0', 'result': {'extraInfo': {'seed': 3802947436}, 'measure': {'values': [0.140625, 0.1396484375, 0.1318359375, 0.1220703125, 0.1201171875, 0.1201171875, 0.1162109375, 0.109375], 'qubits': [0, 1, 2, 3], 'labels': ['00101', '00111', '01111', '00000', '00010', '01000', '01010', '01101']}}}
+------------ message: 01, server publication: 1, Bell state: 4 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+x q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddca8a3c4ae3006d1c14a3', 'idCode': '5cddca893c4ae3006d1c14a2', 'result': {'extraInfo': {'seed': 3783878721}, 'measure': {'values': [0.1396484375, 0.138671875, 0.1259765625, 0.1259765625, 0.12109375, 0.1181640625, 0.1162109375, 0.1142578125], 'qubits': [0, 1, 2, 3], 'labels': ['00000', '01000', '00111', '01010', '01101', '00101', '01111', '00010']}}}
+------------ message: 10, server publication: 0, Bell state: 1 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+y q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcaa0272bf9006ec54860', 'idCode': '5cddca9d272bf9006ec5485f', 'result': {'extraInfo': {'seed': 1324440721}, 'measure': {'values': [0.138671875, 0.1357421875, 0.1318359375, 0.1240234375, 0.1240234375, 0.119140625, 0.1171875, 0.109375], 'qubits': [0, 1, 2, 3], 'labels': ['01011', '01110', '01100', '00001', '00100', '00110', '01001', '00011']}}}
+------------ message: 10, server publication: 0, Bell state: 2 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+y q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcab15473da0078fdf687', 'idCode': '5cddcab05473da0078fdf686', 'result': {'extraInfo': {'seed': 1926396766}, 'measure': {'values': [0.138671875, 0.1328125, 0.1298828125, 0.1279296875, 0.1220703125, 0.12109375, 0.1142578125, 0.11328125], 'qubits': [0, 1, 2, 3], 'labels': ['01100', '00011', '00110', '01110', '00100', '01001', '00001', '01011']}}}
+------------ message: 10, server publication: 0, Bell state: 3 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+y q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcacc07c35b0079853667', 'idCode': '5cddcac707c35b0079853666', 'result': {'extraInfo': {'seed': 2182457438}, 'measure': {'values': [0.1396484375, 0.1337890625, 0.1259765625, 0.125, 0.1240234375, 0.12109375, 0.1201171875, 0.1103515625], 'qubits': [0, 1, 2, 3], 'labels': ['01101', '00000', '00101', '01000', '01111', '00111', '01010', '00010']}}}
+------------ message: 10, server publication: 0, Bell state: 4 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+y q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcadf85a67c006e294176', 'idCode': '5cddcadd85a67c006e294175', 'result': {'extraInfo': {'seed': 2991919467}, 'measure': {'values': [0.138671875, 0.1376953125, 0.1337890625, 0.1240234375, 0.123046875, 0.1181640625, 0.1162109375, 0.1083984375], 'qubits': [0, 1, 2, 3], 'labels': ['00111', '00101', '00000', '01111', '01000', '01010', '01101', '00010']}}}
+------------ message: 10, server publication: 1, Bell state: 1 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+y q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcaf05690dd006e9149de', 'idCode': '5cddcaef5690dd006e9149dd', 'result': {'extraInfo': {'seed': 2683736163}, 'measure': {'values': [0.1396484375, 0.1337890625, 0.130859375, 0.12890625, 0.126953125, 0.125, 0.1103515625, 0.1044921875], 'qubits': [0, 1, 2, 3], 'labels': ['01110', '01011', '01001', '00100', '00001', '00110', '00011', '01100']}}}
+------------ message: 10, server publication: 1, Bell state: 2 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+y q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcb0db9fe040078aac645', 'idCode': '5cddcb0cb9fe040078aac644', 'result': {'extraInfo': {'seed': 1702401717}, 'measure': {'values': [0.1416015625, 0.1298828125, 0.1298828125, 0.1279296875, 0.126953125, 0.1201171875, 0.119140625, 0.1044921875], 'qubits': [0, 1, 2, 3], 'labels': ['01110', '00001', '01011', '01001', '01100', '00011', '00110', '00100']}}}
+------------ message: 10, server publication: 1, Bell state: 3 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+y q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcb1e364d540075bcdaa3', 'idCode': '5cddcb1d364d540075bcdaa2', 'result': {'extraInfo': {'seed': 2171733324}, 'measure': {'values': [0.130859375, 0.130859375, 0.130859375, 0.1298828125, 0.1279296875, 0.1240234375, 0.1220703125, 0.103515625], 'qubits': [0, 1, 2, 3], 'labels': ['00101', '01000', '01111', '01101', '01010', '00000', '00111', '00010']}}}
+------------ message: 10, server publication: 1, Bell state: 4 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+y q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcb30fe2af4007254fec8', 'idCode': '5cddcb2ffe2af4007254fec7', 'result': {'extraInfo': {'seed': 1280486252}, 'measure': {'values': [0.1357421875, 0.1357421875, 0.1328125, 0.1259765625, 0.1240234375, 0.1181640625, 0.1162109375, 0.111328125], 'qubits': [0, 1, 2, 3], 'labels': ['01010', '01101', '00111', '00101', '01000', '00000', '01111', '00010']}}}
+------------ message: 11, server publication: 0, Bell state: 1 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+z q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcb435690dd006e9149e2', 'idCode': '5cddcb425690dd006e9149e1', 'result': {'extraInfo': {'seed': 3590609067}, 'measure': {'values': [0.146484375, 0.130859375, 0.1279296875, 0.126953125, 0.1220703125, 0.1171875, 0.1162109375, 0.1123046875], 'qubits': [0, 1, 2, 3], 'labels': ['01000', '00010', '01010', '00000', '01111', '00101', '00111', '01101']}}}
+------------ message: 11, server publication: 0, Bell state: 2 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+z q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcb565f0316006f4557ba', 'idCode': '5cddcb555f0316006f4557b9', 'result': {'extraInfo': {'seed': 1488733176}, 'measure': {'values': [0.1337890625, 0.1328125, 0.1298828125, 0.12890625, 0.125, 0.12109375, 0.12109375, 0.107421875], 'qubits': [0, 1, 2, 3], 'labels': ['01101', '01111', '00010', '00000', '00101', '00111', '01000', '01010']}}}
+------------ message: 11, server publication: 0, Bell state: 3 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+z q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcb6543835b0076fe6ebf', 'idCode': '5cddcb6443835b0076fe6ebe', 'result': {'extraInfo': {'seed': 851350277}, 'measure': {'values': [0.1474609375, 0.1337890625, 0.12890625, 0.126953125, 0.125, 0.1171875, 0.115234375, 0.10546875], 'qubits': [0, 1, 2, 3], 'labels': ['00011', '01100', '00100', '00110', '01011', '01110', '00001', '01001']}}}
+------------ message: 11, server publication: 0, Bell state: 4 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+z q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcb7907c35b007985366b', 'idCode': '5cddcb7407c35b007985366a', 'result': {'extraInfo': {'seed': 77224028}, 'measure': {'values': [0.138671875, 0.1298828125, 0.12890625, 0.125, 0.125, 0.1201171875, 0.1201171875, 0.1123046875], 'qubits': [0, 1, 2, 3], 'labels': ['01110', '01011', '00100', '00011', '01001', '00001', '00110', '01100']}}}
+------------ message: 11, server publication: 1, Bell state: 1 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+z q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcb8e2b89030075ce6e9e', 'idCode': '5cddcb8d2b89030075ce6e9d', 'result': {'extraInfo': {'seed': 3316222620}, 'measure': {'values': [0.138671875, 0.1376953125, 0.126953125, 0.1259765625, 0.125, 0.12109375, 0.1171875, 0.107421875], 'qubits': [0, 1, 2, 3], 'labels': ['00111', '01000', '00101', '00000', '01010', '01101', '01111', '00010']}}}
+------------ message: 11, server publication: 1, Bell state: 2 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+z q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcba7364d540075bcdaaa', 'idCode': '5cddcba6364d540075bcdaa9', 'result': {'extraInfo': {'seed': 4163576142}, 'measure': {'values': [0.1435546875, 0.1357421875, 0.1298828125, 0.1298828125, 0.1240234375, 0.1220703125, 0.1103515625, 0.1044921875], 'qubits': [0, 1, 2, 3], 'labels': ['01111', '00000', '00010', '00111', '01101', '00101', '01010', '01000']}}}
+------------ message: 11, server publication: 1, Bell state: 3 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+z q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcba7364d540075bcdaaa', 'idCode': '5cddcba6364d540075bcdaa9', 'result': {'extraInfo': {'seed': 4163576142}, 'measure': {'values': [0.1435546875, 0.1357421875, 0.1298828125, 0.1298828125, 0.1240234375, 0.1220703125, 0.1103515625, 0.1044921875], 'qubits': [0, 1, 2, 3], 'labels': ['01111', '00000', '00010', '00111', '01101', '00101', '01010', '01000']}}}
+------------ message: 11, server publication: 1, Bell state: 3 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+z q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+z q[0];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcbc107c35b007985366d', 'idCode': '5cddcbbe07c35b007985366c', 'result': {'extraInfo': {'seed': 1469000116}, 'measure': {'values': [0.14453125, 0.12890625, 0.12890625, 0.1259765625, 0.123046875, 0.1220703125, 0.12109375, 0.10546875], 'qubits': [0, 1, 2, 3], 'labels': ['00011', '00110', '01110', '00001', '01001', '01011', '01100', '00100']}}}
+------------ message: 11, server publication: 1, Bell state: 4 ------------
+IBMQX API auth success.
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[5];
+creg c[5];
+h q[2];
+cx q[2], q[1];
+cx q[1], q[0];
+z q[3];
+cx q[3], q[2];
+h q[3];
+h q[1];
+x q[0];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+measure q[3] -> c[3];
+{'status': 'DONE', 'idExecution': '5cddcbd35690dd006e9149e4', 'idCode': '5cddcbd25690dd006e9149e3', 'result': {'extraInfo': {'seed': 1711501101}, 'measure': {'values': [0.1435546875, 0.1357421875, 0.134765625, 0.130859375, 0.1298828125, 0.1123046875, 0.1064453125, 0.1064453125], 'qubits': [0, 1, 2, 3], 'labels': ['01011', '00001', '01110', '00100', '01100', '01001', '00011', '00110']}}}
