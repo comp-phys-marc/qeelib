@@ -4,7 +4,7 @@ from ket import ONE
 from profiler import normalize_print_and_get_requirements
 
 API_TOKEN = 'a0f9090f4b9b0a7f86cb31848730654bb4dbc35aab364a7d728162c96b264752d413b88daea7303c87f12e0a719345119c0f8a880a27d73b998887664a989fce'
-
+# API_TOKEN = 'c05e0105601b0c1d7e68e294844fdc5615b42f53b6d6a2bb5d6181206fcaec4753276e3bf4bb1eca8cf2bbf179f15b8ecee6df026b13fb8350df2172a6af23a5'
 
 class IBMQXState:
     """
@@ -27,8 +27,8 @@ class IBMQXState:
             if ONE in ket.get_val():
                 raise ValueError("IBMQX state only supports initialization to |00...0>")
 
-        if num_qubits > 5 and device == 'ibmqx4':
-            raise ValueError("The IBMQX4 only supports 5 qubit states")
+        if num_qubits > 5 and (device in ['ibmqx4', 'ibmqx2']):
+            raise ValueError("This device only supports 5 qubit states")
 
         if api:
             self.api = api
@@ -86,10 +86,7 @@ class IBMQXState:
         """
         if not self.api:
             self._connect()
-        if not self.device == 'ibmq_16_melbourne':
-            results = self.api.run_experiment(self.qasm, self.device, shots)
-        else:
-            results = self.api.run_job([{'qasm': self.qasm}], self.device, shots)
+        results = self.api.run_job([{'qasm': self.qasm}], self.device, shots)
         return results
 
     @normalize_print_and_get_requirements

@@ -3,11 +3,11 @@ from ket import Ket
 from ibmqx_state import IBMQXState as State
 
 
-def ghz_communication_partial_server_cooperation(shots, bell_state, server, message):
+def ghz_communication_two_parties(shots, bell_state, server, message):
 
     initial_coeff = Coefficient(magnitude=1.00, imaginary=False)
     initial_state = Ket(coeff=initial_coeff, val="00000")
-    state = State(ket_list=[initial_state], num_qubits=5, device="ibmq_16_melbourne")
+    state = State(ket_list=[initial_state], num_qubits=5, device="ibmqx4")
 
     # Create GHZ state
     state.h(2).cx(2, 1).cx(1, 0)
@@ -55,10 +55,10 @@ def ghz_communication_partial_server_cooperation(shots, bell_state, server, mess
         state.x(0)
 
     # Perform state tomography
-    results = [state.tomography(qubit=q, phases=21, shots=shots) for q in range(5)]
+    # results = [state.tomography(qubit=q, phases=21, shots=shots) for q in range(5)]
 
-    # state.m(0).m(1).m(2).m(3)
-    # results = state.execute(shots)
+    state.m(0).m(1).m(2).m(3)
+    results = state.execute(shots)
 
     return results
 
@@ -93,7 +93,7 @@ def run_experiment():
                         )
                     )
 
-                    exp = ghz_communication_partial_server_cooperation(
+                    exp = ghz_communication_two_parties(
                         shots,
                         bell_state,
                         server_expect,
