@@ -23,7 +23,7 @@ def ghz_communication_two_parties(shots, bell_state, server, message):
     if message == "11":
         state.z(3)
 
-    # Uj performs Bell state measurement
+    # Bell state measurement
     state.cx(3, 2).h(3)
 
     # Server measures the state of its qubit
@@ -55,10 +55,53 @@ def ghz_communication_two_parties(shots, bell_state, server, message):
         state.x(0)
 
     # Perform state tomography
-    # results = [state.tomography(qubit=q, phases=21, shots=shots) for q in range(5)]
+    results = [state.tomography(qubit=q, phases=21, shots=shots) for q in range(5)]
 
-    state.m(0).m(1).m(2).m(3)
-    results = state.execute(shots)
+    return results
+
+
+def ghz_communication_three_parties(shots, bell_state, server, message_i, message_j):
+
+    initial_coeff = Coefficient(magnitude=1.00, imaginary=False)
+    initial_state = Ket(coeff=initial_coeff, val="00000")
+    state = State(ket_list=[initial_state], num_qubits=5, device="ibmqx4")
+
+    # Create GHZ state
+    state.cx(3, 2).h(2).cx(2, 1).cx(1, 0)
+
+    # Ui prepares the state to be transmitted to Ul
+
+    # if message_i == "00":
+        # nop
+    if message_i == "01":
+        state.x(4)
+    if message_i == "10":
+        state.y(4)
+    if message_i == "11":
+        state.z(4)
+
+    # Uj prepares the state to be transmitted to Ul
+
+    # if message_j == "0":
+        # nop
+    if message_j == "1":
+        state.x(3)
+
+    # GHZ measurement
+    state.cx(4, 3).cx(3, 2).h(4)
+
+    # Server measures the state of its qubit
+    # 0 corresponds to the outcome |+> and 1 corresponds to the |->
+    state.h(1)
+
+    # Ul's decoding operation will depend on the server's
+    # publication and the GHZ measurement
+    #
+    # After this decoding step, Ul will have the message prepared by Ui and Uj
+    # TODO
+
+    # Perform state tomography
+    results = [state.tomography(qubit=q, phases=21, shots=shots) for q in range(5)]
 
     return results
 
