@@ -55,12 +55,12 @@ def ghz_communication_two_parties(shots, bell_state, server, message):
         state.x(0)
 
     # Perform state tomography
-    results = [state.tomography(qubit=q, phases=21, shots=shots) for q in range(5)]
+    results = [state.tomography(qubit=q, phases=21, shots=shots) for q in [1, 2, 3, 4]]
 
     return results
 
 
-def ghz_communication_three_parties(shots, bell_state, server, message_i, message_j):
+def ghz_communication_three_parties(shots, ghz_state, server, message_i, message_j):
 
     initial_coeff = Coefficient(magnitude=1.00, imaginary=False)
     initial_state = Ket(coeff=initial_coeff, val="00000")
@@ -98,15 +98,14 @@ def ghz_communication_three_parties(shots, bell_state, server, message_i, messag
     # publication and the GHZ measurement
     #
     # After this decoding step, Ul will have the message prepared by Ui and Uj
-    # TODO
 
-    # Perform state tomography
-    results = [state.tomography(qubit=q, phases=21, shots=shots) for q in range(5)]
+    # Perform state tomography on received state
+    results = state.tomography(qubit=0, phases=21, shots=shots)
 
     return results
 
 
-def run_experiment():
+def run_two_party_experiment():
 
     # Parameters for the states to teleport
     messages_to_transmit = ["00", "01", "10", "11"]
@@ -145,4 +144,49 @@ def run_experiment():
 
                     print(exp)
 
-run_experiment()
+
+def run_three_party_experiment():
+
+    # Parameters for the states to teleport
+    messages_to_transmit_i = ["00", "01", "10", "11"]
+    messages_to_transmit_j = ["0", "1"]
+
+    # Run each case this many times to estimate resulting qubit
+    case_trial_array = [1]
+
+    # Expect the server to measure this state for post selection
+    server_expect_array = [0, 1]
+
+    # Ui's Bell states to test
+    ghz_states = [1, 2, 3, 4, 5, 6, 7]
+
+    for message_j in messages_to_transmit_j:
+        for message_i in messages_to_transmit_i:
+            for i in range(len(server_expect_array)):
+                for j in range(len(case_trial_array)):
+                    server_expect = server_expect_array[i]
+                    shots = case_trial_array[j]
+
+                    for ghz_state in ghz_states:
+
+                        print(
+                            "------------ message: {0}, server publication: {1}, Bell state: {2} ------------".format(
+                                message_j + message_i,
+                                server_expect,
+                                ghz_state
+                            )
+                        )
+
+                        exp = ghz_communication_three_parties(
+                            shots,
+                            ghz_state,
+                            server_expect,
+                            message_i,
+                            message_j
+                        )
+
+                        print(exp)
+
+
+# run_two_party_experiment()
+run_three_party_experiment()
