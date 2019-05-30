@@ -44,7 +44,7 @@ def controlled_teleportation(shots, bell_state, charlie, theta, phi, lamb):
         state.x(0)
 
     # Perform state tomography
-    tomography_results = [state.tomography(qubit=q, phases=21, shots=shots) for q in range(4)]
+    tomography_results, vector = [state.tomography(qubit=q, phases=21, shots=shots) for q in range(4)]
     return tomography_results
 
 

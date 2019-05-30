@@ -186,11 +186,53 @@ class State:
         :return: The full quantum state after the operation.
         """
         
+        # if not self.collapse(qubit):
+        new_kets = []
+        for ket in self.kets:
+            print("h ({0})".format(qubit), end='')
+            ket.print()
+            hadamard_result = ket.h(qubit)
+            new_kets.extend(hadamard_result)
+            print(" =", end='')
+            hadamard_result[0].print()
+            hadamard_result[1].print()
+            print("\n")
+        self.kets = new_kets
+        return self
+
+    @normalize_print_and_get_requirements
+    def post_select(self, data):
+        """
+        Filters the results for Kets that match a specific set of correct outcomes.
+
+        :param data: The allowed values for each qubit.
+        :return: The full quantum state after post-selection.
+        """
+        to_remove = []
+        for qubit in data:
+            for ket in self.kets:
+                val = ket.get_val()
+                if not val[qubit] == data[qubit] and ket not in to_remove:
+                    to_remove.append(ket)
+        for ket in to_remove:
+            self.remove_ket(ket)
+
+        print("post selecting for qubit's values: {0}".format(str(data)))
+
+        return self
+
+    def collapse(self, qubit):
+        """
+        Performs the collapsing of a large state due to a Hadamard gate on the target qubit.
+
+        :param qubit: The target qubit.
+        :return: Whether the state collapsed.
+        """
         alpha = Coefficient(magnitude=0.00, imaginary=False)
         beta = Coefficient(magnitude=0.00, imaginary=False)
         one_kets = []
         zero_kets = []
-        
+
         for ket in self.kets:
             if ket.get_val()[qubit] == ONE:
                 one_kets.append(ket)
@@ -198,7 +240,7 @@ class State:
             elif ket.get_val()[qubit] == ZERO:
                 zero_kets.append(ket)
                 alpha = alpha.add(ket.get_coefficient())
-        
+
         negative_beta = copy.deepcopy(beta)
         negative_beta.negate_magnitude()
         if alpha.equals(beta):
@@ -210,6 +252,7 @@ class State:
             for ket in self.kets:
                 ket.print()
             print("\n")
+            return True
         elif alpha.equals(negative_beta):
             print("h ({0})".format(qubit), end='')
             for ket in self.kets:
@@ -219,19 +262,9 @@ class State:
             for ket in self.kets:
                 ket.print()
             print("\n")
+            return True
         else:
-            new_kets = []
-            for ket in self.kets:
-                print("h ({0})".format(qubit), end='')
-                ket.print()
-                hadamard_result = ket.h(qubit)
-                new_kets.extend(hadamard_result)
-                print(" =", end='')
-                hadamard_result[0].print()
-                hadamard_result[1].print()
-                print("\n")
-            self.kets = new_kets
-        return self
+            return False
     
     @normalize_print_and_get_requirements
     def m(self, qubit):

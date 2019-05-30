@@ -41,7 +41,7 @@ class IBMQXState:
         self.device = device
 
         if qasm is None:
-            self.qasm = f'OPENQASM 2.0;include "qelib1.inc";qreg {self.symbol}[{num_qubits}];creg c[{num_qubits}];'
+            self.qasm = f'OPENQASM 2.0;\ninclude "qelib1.inc";\nqreg {self.symbol}[{num_qubits}];\ncreg c[{num_qubits}];'
         else:
             self.qasm = qasm
 
@@ -87,7 +87,7 @@ class IBMQXState:
         """
         if not self.api:
             self._connect()
-        results = self.api.run_job([{'qasm': self.qasm}], self.device, shots)
+        results = self.api.run_experiment(self.qasm, self.device, shots, self.symbol, timeout=60)
         return results
 
     @normalize_print_and_get_requirements
@@ -256,7 +256,9 @@ class IBMQXState:
         """
         Prints the requirements for maintaining the current state of the quantum system.
         """
+        print()
         self.print_max_requirements()
+        print(self.api.backend_parameters(self.device))
 
     def print_max_requirements(self):
         """
@@ -276,7 +278,9 @@ class IBMQXState:
 
         self._connect()
 
+        bloch_vector = ['x', 'y', 'z']
         exp_vector = range(0, phases)
+
         for index in exp_vector:
             phase = 2 * np.pi * index / (len(exp_vector) - 1)
             index += 1
@@ -294,6 +298,7 @@ class IBMQXState:
             x_state.u1(phase, qubit)
 
             x_state.h(qubit)
+            x_state.barrier(qubit)
             x_state.m(qubit)
 
             # Measure Y Axis
@@ -310,6 +315,7 @@ class IBMQXState:
 
             y_state.sdg(qubit)
             y_state.h(qubit)
+            y_state.barrier(qubit)
             y_state.m(qubit)
 
             # Measure Z Axis
@@ -323,18 +329,35 @@ class IBMQXState:
             )
 
             z_state.u1(phase, qubit)
-
+            z_state.barrier(qubit)
             z_state.m(qubit)
 
             results.append(x_state.execute(shots=shots))
             results.append(y_state.execute(shots=shots))
             results.append(z_state.execute(shots=shots))
 
-        return results
+        bloch_vectors = []
+        for exp_index in exp_vector:
+            bloch = [0, 0, 0]
+            for bloch_index in range(len(bloch_vector)):
+                p_zero = 0
+                p_one = 0
+                circuit_index = 3 * exp_index + bloch_index
+                data = results[circuit_index]['result']['measure']
+                for readout in range(len(data['labels'])):
+                    qubit_readout = data['labels'][readout][-(qubit + 1)]
+                    if qubit_readout == '0':
+                        p_zero += data['values'][readout]
+                    elif qubit_readout == '1':
+                        p_one += data['values'][readout]
+                bloch[bloch_index] = p_zero - p_one
+            bloch_vectors.append(bloch)
+
+        return results, bloch_vectors
 
     def print(self):
         """
         Prints the full qasm.
         """
-        print("IBMQX QASM:")
+        print("\nIBMQX QASM:")
         print(self.qasm)
