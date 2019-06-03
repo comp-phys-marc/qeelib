@@ -62,6 +62,63 @@ def ghz_communication_two_parties(state, shots, bell_state, server, message):
         return state
 
 
+def ghz_like_communication_two_parties(state, shots, bell_state, server, message):
+
+    # Create GHZ-like state
+    state.h(2).cx(2, 1).h(4).cx(4, 2)
+
+    # Ui prepares the state to be transmitted to Uj
+
+    # if message == "00":
+        # nop
+    if message == "01":
+        state.x(3)
+    if message == "10":
+        state.y(3)
+    if message == "11":
+        state.z(3)
+
+    # Bell state measurement
+    state.cx(3, 2).h(3)
+
+    # Server measures the state of its qubit
+    # 0 corresponds to the outcome |+> and 1 corresponds to the |->
+    state.h(1)
+
+    # Uj's decoding operation will be one of 4 depending on the server's
+    # publication and the Bell measurement
+    #
+    # After this decoding step, Uj will have the state prepared by Ui
+    if bell_state == 1 and server == 1:
+        state.z(4)
+
+    if bell_state == 2 and server == 0:
+        state.z(4)
+
+    if bell_state == 3 and server == 0:
+        state.x(4)
+
+    elif bell_state == 3 and server == 1:
+        state.z(4)
+        state.x(4)
+
+    if bell_state == 4 and server == 1:
+        state.x(4)
+
+    elif bell_state == 4 and server == 0:
+        state.z(4)
+        state.x(4)
+
+    if isinstance(state, State):
+        # Perform state tomography
+        results, vector = state.tomography(qubit=4, phases=21, shots=shots)
+        print("Bloch vector: {0}".format(str(vector)))
+
+        return results, state
+    else:
+        return state
+
+
 def ghz_communication_three_parties(state, shots, ghz_state, server, message_i, message_j):
 
     # Create GHZ state
@@ -86,7 +143,7 @@ def ghz_communication_three_parties(state, shots, ghz_state, server, message_i, 
         state.x(3)
 
     # GHZ measurement
-    state.cx(3, 4).cx(3, 2).h(4)
+    state.h(3).cx(3, 4).cx(3, 2)
 
     # Server measures the state of its qubit
     # 0 corresponds to the outcome |+> and 1 corresponds to the |->
@@ -112,7 +169,7 @@ def run_two_party_experiment():
     profiler = Profiler()
 
     # Parameters for the states to teleport
-    messages_to_transmit = ["11", "01", "10", "11"]
+    messages_to_transmit = ["00", "01", "10", "11"]
 
     # Run each case this many times to estimate resulting qubit
     case_trial_array = [1024]
@@ -162,7 +219,7 @@ def run_two_party_experiment():
                     initial_state = Ket(coeff=initial_coeff, val="00000")
                     state = State(ket_list=[initial_state], num_qubits=5, device="ibmq_qasm_simulator")
 
-                    exp = ghz_communication_two_parties(
+                    ghz_exp = ghz_communication_two_parties(
                         state,
                         shots,
                         bell_state,
@@ -170,7 +227,39 @@ def run_two_party_experiment():
                         message
                     )
 
-                    print(exp)
+                    print(ghz_exp)
+
+                    verify_coeff = Coefficient(magnitude=1.00, imaginary=False)
+                    verify_state = Ket(coeff=verify_coeff, val="00000")
+                    verification_state = VerificationState(ket_list=[verify_state], num_qubits=5)
+
+                    ghz_like_communication_two_parties(
+                        verification_state,
+                        shots,
+                        bell_state,
+                        server_expect,
+                        message
+                    )
+
+                    verification_state.post_select({
+                        1: str(server_expect),
+                        2: bell_mapping[bell_state - 1][0],
+                        3: bell_mapping[bell_state - 1][1]
+                    })
+
+                    initial_coeff = Coefficient(magnitude=1.00, imaginary=False)
+                    initial_state = Ket(coeff=initial_coeff, val="00000")
+                    state = State(ket_list=[initial_state], num_qubits=5, device="ibmq_qasm_simulator")
+
+                    ghz_like_exp = ghz_like_communication_two_parties(
+                        state,
+                        shots,
+                        bell_state,
+                        server_expect,
+                        message
+                    )
+
+                    print(ghz_like_exp)
 
     profiler.print()
 
@@ -248,5 +337,5 @@ def run_three_party_experiment():
     profiler.print()
 
 
-# run_two_party_experiment()
-run_three_party_experiment()
+run_two_party_experiment()
+# run_three_party_experiment()
