@@ -132,7 +132,7 @@ def ghz_like_communication_two_parties(state, shots, bell_state, server, message
 
         state.m(1)
         state.m(2)
-        state.m(3)
+        state.m(12)
         state.m(13)
 
         if isinstance(state, State):
