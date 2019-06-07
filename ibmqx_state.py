@@ -3,9 +3,21 @@ from IBMQuantumExperience import IBMQuantumExperience
 from ket import ONE
 from profiler import normalize_print_and_get_requirements
 
+# GitHub Account
 # API_TOKEN = 'a0f9090f4b9b0a7f86cb31848730654bb4dbc35aab364a7d728162c96b264752d413b88daea7303c87f12e0a719345119c0f8a880a27d73b998887664a989fce'
-# API_TOKEN = 'c05e0105601b0c1d7e68e294844fdc5615b42f53b6d6a2bb5d6181206fcaec4753276e3bf4bb1eca8cf2bbf179f15b8ecee6df026b13fb8350df2172a6af23a5'
-API_TOKEN = '033df3fead612eb383875727dfe1dbb6022cbd44e1a23410fec2db9f5d09b6e465cf4d7944cd98da84ca65e5b90e77db05d498b70c997989bae6f7d3827c09e9'
+
+# UWaterloo Account
+API_TOKEN = 'c05e0105601b0c1d7e68e294844fdc5615b42f53b6d6a2bb5d6181206fcaec4753276e3bf4bb1eca8cf2bbf179f15b8ecee6df026b13fb8350df2172a6af23a5'
+
+# Dr. Farouk's Account
+# API_TOKEN = '033df3fead612eb383875727dfe1dbb6022cbd44e1a23410fec2db9f5d09b6e465cf4d7944cd98da84ca65e5b90e77db05d498b70c997989bae6f7d3827c09e9'
+
+
+class BackendException(Exception):
+    """
+    Exception raised when an error is returned from a remote system.
+    """
+    pass
 
 
 class IBMQXState:
@@ -88,7 +100,14 @@ class IBMQXState:
         """
         if not self.api:
             self._connect()
-        results = self.api.run_experiment(self.qasm, self.device, shots, self.symbol, timeout=60)
+        if not self.device == 'ibmq_qasm_simulator':
+            results = self.api.run_job([{'qasm': self.qasm}], self.device, shots)
+        else:
+            results = self.api.run_experiment(self.qasm, self.device, shots, self.symbol, timeout=60)
+        if 'error' in results:
+            raise BackendException(
+                "Error thrown by backend {0} system: {1}".format(self.device, results['error']['message'])
+            )
         return results
 
     @normalize_print_and_get_requirements
@@ -272,6 +291,9 @@ class IBMQXState:
         Replicates the current circuit and performs measurements in each of the three orthogonal axes of the Bloch
         sphere to determine the qubit's state.
 
+        :param qubit: The target qubit.
+        :param phases: The number of relative phases to measure with respect to each axis.
+        :param shots: The number of times to run each phase measurement circuit.
         :return: The results from each circuit.
         """
 
@@ -353,6 +375,9 @@ class IBMQXState:
                         p_one += data['values'][readout]
                 bloch[bloch_index] = p_zero - p_one
             bloch_vectors.append(bloch)
+
+        print("Observed Bloch vectors:")
+        print(bloch_vectors)
 
         return results, bloch_vectors
 
