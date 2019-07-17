@@ -1,0 +1,1123 @@
+------------ message: 11, server publication: 0, Bell state: 2 ------------
+h (1) + 1.000|00000000000000> = + 1.000|00000000000000> + 1.000|01000000000000>
+
+normalizing factor: 0.7071067811865475
+
+|g> = + 0.707|00000000000000> + 0.707|01000000000000>
+
+cx (1 -> 2) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+cx (1 -> 2) + 0.707|01000000000000> = + 0.707|01100000000000>
+
+normalizing factor: 1.0000000000000002
+
+|g> = + 0.707|00000000000000> + 0.707|01100000000000>
+
+cx (2 -> 3) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+cx (2 -> 3) + 0.707|01100000000000> = + 0.707|01110000000000>
+
+normalizing factor: 1.0
+
+|g> = + 0.707|00000000000000> + 0.707|01110000000000>
+
+z (13) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+z (13) + 0.707|01110000000000> = + 0.707|01110000000000>
+
+normalizing factor: 1.0
+
+|g> = + 0.707|00000000000000> + 0.707|01110000000000>
+
+cx (13 -> 1) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+cx (13 -> 1) + 0.707|01110000000000> = + 0.707|01110000000000>
+
+normalizing factor: 1.0
+
+|g> = + 0.707|00000000000000> + 0.707|01110000000000>
+
+h (13) + 0.707|00000000000000> = + 0.707|00000000000000> + 0.707|00000000000001>
+
+h (13) + 0.707|01110000000000> = + 0.707|01110000000000> + 0.707|01110000000001>
+
+normalizing factor: 0.7071067811865475
+
+|g> = + 0.500|00000000000000> + 0.500|00000000000001> + 0.500|01110000000000> + 0.500|01110000000001>
+
+h (2) + 0.500|00000000000000> = + 0.500|00000000000000> + 0.500|00100000000000>
+
+h (2) + 0.500|00000000000001> = + 0.500|00000000000001> + 0.500|00100000000001>
+
+h (2) + 0.500|01110000000000> = - 0.500|01110000000000> + 0.500|01010000000000>
+
+h (2) + 0.500|01110000000001> = - 0.500|01110000000001> + 0.500|01010000000001>
+
+normalizing factor: 0.7071067811865475
+
+|g> = + 0.354|00000000000000> + 0.354|00100000000000> + 0.354|00000000000001> + 0.354|00100000000001> - 0.354|01110000000000> + 0.354|01010000000000> - 0.354|01110000000001> + 0.354|01010000000001>
+
+z (3) + 0.354|00000000000000> = + 0.354|00000000000000>
+
+z (3) + 0.354|00100000000000> = + 0.354|00100000000000>
+
+z (3) + 0.354|00000000000001> = + 0.354|00000000000001>
+
+z (3) + 0.354|00100000000001> = + 0.354|00100000000001>
+
+z (3) - 0.354|01110000000000> = + 0.354|01110000000000>
+
+z (3) + 0.354|01010000000000> = - 0.354|01010000000000>
+
+z (3) - 0.354|01110000000001> = + 0.354|01110000000001>
+
+z (3) + 0.354|01010000000001> = - 0.354|01010000000001>
+
+normalizing factor: 1.0000000000000002
+
+|g> = + 0.354|00000000000000> + 0.354|00100000000000> + 0.354|00000000000001> + 0.354|00100000000001> + 0.354|01110000000000> - 0.354|01010000000000> + 0.354|01110000000001> - 0.354|01010000000001>
+
+normalizing factor: 1.414213562373095
+
+|g> = + 0.500|00000000000000> + 0.500|00100000000000> + 0.500|00000000000001> + 0.500|00100000000001>
+
+normalizing factor: 1.414213562373095
+
+|g> = + 0.707|00000000000000> + 0.707|00000000000001>
+
+normalizing factor: 1.0000000000000002
+
+|g> = + 0.707|00000000000000> + 0.707|00000000000001>
+
+normalizing factor: 1.414213562373095
+
+|g> = + 1.000|00000000000001>
+
+post selecting for qubit's values: {1: '0', 2: '0', 3: '1'}
+|g> =
+
+Initializing IBMQX state:
+
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h (1)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx (1 -> 2)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx (2 -> 3)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z (13)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx (13 -> 1)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h (13)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h (2)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z (3)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z g[3];
+m (1)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z g[3];
+measure g[1] -> c[1];
+m (2)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z g[3];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+m (3)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z g[3];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+measure g[3] -> c[3];
+m (13)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z g[3];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+measure g[3] -> c[3];
+measure g[13] -> c[13];
+IBMQX API auth success.
+
+{'qubits': 14, 'gates': 12, 'processor': 'ibmq_16_melbourne'}
+{'lastUpdateDate': '2019-06-09T06:33:12.000Z', 'fridgeParameters': {'cooldownDate': '2018-07-10', 'Temperature': {'date': '2019-06-09T08:39:05Z', 'value': None, 'unit': 'K'}}, 'qubits': [{'name': 'Q0', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 21.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 48, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.1002374}}, {'name': 'Q1', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 141.2, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 69.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.2385416}}, {'name': 'Q2', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 155.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 84.7, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.0329076}}, {'name': 'Q3', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 47.6, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 72.9, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.8961749}}, {'name': 'Q4', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 33, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 62.6, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.0264519}}, {'name': 'Q5', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 53.1, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 26.6, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.067316}}, {'name': 'Q6', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 65.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 65.8, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9238618}}, {'name': 'Q7', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 60.1, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 44.8, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9744844}}, {'name': 'Q8', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 128.5, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 81.5, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.7377882}}, {'name': 'Q9', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 83.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 44.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.96344}}, {'name': 'Q10', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 68.1, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 59.8, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9451187}}, {'name': 'Q11', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 90.7, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 39.9, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9968105}}, {'name': 'Q12', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 94.9, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 65.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.7600629}}, {'name': 'Q13', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 40.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 23.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9684653}}], 'backend': 'ibmq_16_melbourne'}
+
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z g[3];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+measure g[3] -> c[3];
+measure g[13] -> c[13];
+({'qasms': [{'qasm': '\ninclude "qelib1.inc";\nqreg g[14];\ncreg c[14];\nh g[1];\ncx g[1], g[2];\ncx g[2], g[3];\nz g[13];\ncx g[13], g[1];\nh g[13];\nh g[2];\nz g[3];\nmeasure g[1] -> c[1];\nmeasure g[2] -> c[2];\nmeasure g[3] -> c[3];\nmeasure g[13] -> c[13];', 'status': 'WORKING_IN_PROGRESS', 'executionId': '5cfcf22d3dfe94007671f706'}], 'shots': 1024, 'backend': {'id': '5ba502d0986f16003ea56c87', 'name': 'ibmq_16_melbourne'}, 'status': 'RUNNING', 'usedCredits': 3, 'creationDate': '2019-06-09T11:48:59.895Z', 'deleted': False, 'id': '5cfcf22b3dfe94007671f705', 'userId': '5ce406695a01ab007886b87b', 'infoQueue': {'status': 'PENDING_IN_QUEUE', 'position': 6}}, <ibmqx_state.IBMQXState object at 0x113021278>)
+------------ message: 11, server publication: 0, Bell state: 3 ------------
+h (1) + 1.000|00000000000000> = + 1.000|00000000000000> + 1.000|01000000000000>
+
+normalizing factor: 0.7071067811865475
+
+|g> = + 0.707|00000000000000> + 0.707|01000000000000>
+
+cx (1 -> 2) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+cx (1 -> 2) + 0.707|01000000000000> = + 0.707|01100000000000>
+
+normalizing factor: 1.0000000000000002
+
+|g> = + 0.707|00000000000000> + 0.707|01100000000000>
+
+cx (2 -> 3) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+cx (2 -> 3) + 0.707|01100000000000> = + 0.707|01110000000000>
+
+normalizing factor: 1.0
+
+|g> = + 0.707|00000000000000> + 0.707|01110000000000>
+
+z (13) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+z (13) + 0.707|01110000000000> = + 0.707|01110000000000>
+
+normalizing factor: 1.0
+
+|g> = + 0.707|00000000000000> + 0.707|01110000000000>
+
+cx (13 -> 1) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+cx (13 -> 1) + 0.707|01110000000000> = + 0.707|01110000000000>
+
+normalizing factor: 1.0
+
+|g> = + 0.707|00000000000000> + 0.707|01110000000000>
+
+h (13) + 0.707|00000000000000> = + 0.707|00000000000000> + 0.707|00000000000001>
+
+h (13) + 0.707|01110000000000> = + 0.707|01110000000000> + 0.707|01110000000001>
+
+normalizing factor: 0.7071067811865475
+
+|g> = + 0.500|00000000000000> + 0.500|00000000000001> + 0.500|01110000000000> + 0.500|01110000000001>
+
+h (2) + 0.500|00000000000000> = + 0.500|00000000000000> + 0.500|00100000000000>
+
+h (2) + 0.500|00000000000001> = + 0.500|00000000000001> + 0.500|00100000000001>
+
+h (2) + 0.500|01110000000000> = - 0.500|01110000000000> + 0.500|01010000000000>
+
+h (2) + 0.500|01110000000001> = - 0.500|01110000000001> + 0.500|01010000000001>
+
+normalizing factor: 0.7071067811865475
+
+|g> = + 0.354|00000000000000> + 0.354|00100000000000> + 0.354|00000000000001> + 0.354|00100000000001> - 0.354|01110000000000> + 0.354|01010000000000> - 0.354|01110000000001> + 0.354|01010000000001>
+
+x (3) + 0.354|00000000000000> = + 0.354|00010000000000>
+
+x (3) + 0.354|00100000000000> = + 0.354|00110000000000>
+
+x (3) + 0.354|00000000000001> = + 0.354|00010000000001>
+
+x (3) + 0.354|00100000000001> = + 0.354|00110000000001>
+
+x (3) - 0.354|01110000000000> = - 0.354|01100000000000>
+
+x (3) + 0.354|01010000000000> = + 0.354|01000000000000>
+
+x (3) - 0.354|01110000000001> = - 0.354|01100000000001>
+
+x (3) + 0.354|01010000000001> = + 0.354|01000000000001>
+
+normalizing factor: 1.0000000000000002
+
+|g> = + 0.354|00010000000000> + 0.354|00110000000000> + 0.354|00010000000001> + 0.354|00110000000001> - 0.354|01100000000000> + 0.354|01000000000000> - 0.354|01100000000001> + 0.354|01000000000001>
+
+normalizing factor: 1.414213562373095
+
+|g> = + 0.500|00010000000000> + 0.500|00110000000000> + 0.500|00010000000001> + 0.500|00110000000001>
+
+normalizing factor: 1.414213562373095
+
+|g> = + 0.707|00010000000000> + 0.707|00010000000001>
+
+normalizing factor: 1.0000000000000002
+
+|g> = + 0.707|00010000000000> + 0.707|00010000000001>
+
+normalizing factor: 1.414213562373095
+
+|g> = + 1.000|00010000000000>
+
+post selecting for qubit's values: {1: '0', 2: '1', 3: '0'}
+|g> =
+
+Initializing IBMQX state:
+
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h (1)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx (1 -> 2)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx (2 -> 3)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z (13)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx (13 -> 1)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h (13)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h (2)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+x (3)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+x g[3];
+m (1)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+x g[3];
+measure g[1] -> c[1];
+m (2)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+x g[3];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+m (3)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+x g[3];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+measure g[3] -> c[3];
+m (13)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+x g[3];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+measure g[3] -> c[3];
+measure g[13] -> c[13];
+IBMQX API auth success.
+
+{'qubits': 14, 'gates': 12, 'processor': 'ibmq_16_melbourne'}
+{'lastUpdateDate': '2019-06-09T06:33:12.000Z', 'fridgeParameters': {'cooldownDate': '2018-07-10', 'Temperature': {'date': '2019-06-09T08:39:05Z', 'value': None, 'unit': 'K'}}, 'qubits': [{'name': 'Q0', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 21.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 48, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.1002374}}, {'name': 'Q1', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 141.2, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 69.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.2385416}}, {'name': 'Q2', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 155.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 84.7, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.0329076}}, {'name': 'Q3', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 47.6, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 72.9, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.8961749}}, {'name': 'Q4', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 33, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 62.6, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.0264519}}, {'name': 'Q5', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 53.1, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 26.6, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.067316}}, {'name': 'Q6', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 65.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 65.8, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9238618}}, {'name': 'Q7', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 60.1, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 44.8, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9744844}}, {'name': 'Q8', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 128.5, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 81.5, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.7377882}}, {'name': 'Q9', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 83.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 44.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.96344}}, {'name': 'Q10', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 68.1, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 59.8, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9451187}}, {'name': 'Q11', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 90.7, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 39.9, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9968105}}, {'name': 'Q12', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 94.9, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 65.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.7600629}}, {'name': 'Q13', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 40.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 23.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9684653}}], 'backend': 'ibmq_16_melbourne'}
+
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+x g[3];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+measure g[3] -> c[3];
+measure g[13] -> c[13];
+({'qasms': [{'qasm': '\ninclude "qelib1.inc";\nqreg g[14];\ncreg c[14];\nh g[1];\ncx g[1], g[2];\ncx g[2], g[3];\nz g[13];\ncx g[13], g[1];\nh g[13];\nh g[2];\nx g[3];\nmeasure g[1] -> c[1];\nmeasure g[2] -> c[2];\nmeasure g[3] -> c[3];\nmeasure g[13] -> c[13];', 'status': 'WORKING_IN_PROGRESS', 'executionId': '5cfcf23143e51900734e2102'}], 'shots': 1024, 'backend': {'id': '5ba502d0986f16003ea56c87', 'name': 'ibmq_16_melbourne'}, 'status': 'RUNNING', 'usedCredits': 3, 'creationDate': '2019-06-09T11:49:05.613Z', 'deleted': False, 'id': '5cfcf23143e51900734e2101', 'userId': '5ce406695a01ab007886b87b', 'infoQueue': {'status': 'PENDING_IN_QUEUE', 'position': 7}}, <ibmqx_state.IBMQXState object at 0x113021080>)
+------------ message: 11, server publication: 1, Bell state: 2 ------------
+h (1) + 1.000|00000000000000> = + 1.000|00000000000000> + 1.000|01000000000000>
+
+normalizing factor: 0.7071067811865475
+
+|g> = + 0.707|00000000000000> + 0.707|01000000000000>
+
+cx (1 -> 2) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+cx (1 -> 2) + 0.707|01000000000000> = + 0.707|01100000000000>
+
+normalizing factor: 1.0000000000000002
+
+|g> = + 0.707|00000000000000> + 0.707|01100000000000>
+
+cx (2 -> 3) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+cx (2 -> 3) + 0.707|01100000000000> = + 0.707|01110000000000>
+
+normalizing factor: 1.0
+
+|g> = + 0.707|00000000000000> + 0.707|01110000000000>
+
+z (13) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+z (13) + 0.707|01110000000000> = + 0.707|01110000000000>
+
+normalizing factor: 1.0
+
+|g> = + 0.707|00000000000000> + 0.707|01110000000000>
+
+cx (13 -> 1) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+cx (13 -> 1) + 0.707|01110000000000> = + 0.707|01110000000000>
+
+normalizing factor: 1.0
+
+|g> = + 0.707|00000000000000> + 0.707|01110000000000>
+
+h (13) + 0.707|00000000000000> = + 0.707|00000000000000> + 0.707|00000000000001>
+
+h (13) + 0.707|01110000000000> = + 0.707|01110000000000> + 0.707|01110000000001>
+
+normalizing factor: 0.7071067811865475
+
+|g> = + 0.500|00000000000000> + 0.500|00000000000001> + 0.500|01110000000000> + 0.500|01110000000001>
+
+h (2) + 0.500|00000000000000> = + 0.500|00000000000000> + 0.500|00100000000000>
+
+h (2) + 0.500|00000000000001> = + 0.500|00000000000001> + 0.500|00100000000001>
+
+h (2) + 0.500|01110000000000> = - 0.500|01110000000000> + 0.500|01010000000000>
+
+h (2) + 0.500|01110000000001> = - 0.500|01110000000001> + 0.500|01010000000001>
+
+normalizing factor: 0.7071067811865475
+
+|g> = + 0.354|00000000000000> + 0.354|00100000000000> + 0.354|00000000000001> + 0.354|00100000000001> - 0.354|01110000000000> + 0.354|01010000000000> - 0.354|01110000000001> + 0.354|01010000000001>
+
+normalizing factor: 1.4142135623730951
+
+|g> = + 0.500|00000000000000> + 0.500|00100000000000> + 0.500|00000000000001> + 0.500|00100000000001>
+
+normalizing factor: 1.414213562373095
+
+|g> = + 0.707|00000000000000> + 0.707|00000000000001>
+
+normalizing factor: 1.0000000000000002
+
+|g> = + 0.707|00000000000000> + 0.707|00000000000001>
+
+normalizing factor: 1.414213562373095
+
+|g> = + 1.000|00000000000001>
+
+post selecting for qubit's values: {1: '1', 2: '0', 3: '1'}
+|g> =
+
+Initializing IBMQX state:
+
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h (1)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx (1 -> 2)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx (2 -> 3)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z (13)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx (13 -> 1)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h (13)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h (2)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+m (1)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+measure g[1] -> c[1];
+m (2)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+m (3)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+measure g[3] -> c[3];
+m (13)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+measure g[3] -> c[3];
+measure g[13] -> c[13];
+IBMQX API auth success.
+
+{'qubits': 14, 'gates': 11, 'processor': 'ibmq_16_melbourne'}
+{'lastUpdateDate': '2019-06-09T06:33:12.000Z', 'fridgeParameters': {'cooldownDate': '2018-07-10', 'Temperature': {'date': '2019-06-09T08:39:05Z', 'value': None, 'unit': 'K'}}, 'qubits': [{'name': 'Q0', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 21.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 48, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.1002374}}, {'name': 'Q1', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 141.2, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 69.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.2385416}}, {'name': 'Q2', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 155.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 84.7, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.0329076}}, {'name': 'Q3', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 47.6, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 72.9, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.8961749}}, {'name': 'Q4', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 33, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 62.6, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.0264519}}, {'name': 'Q5', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 53.1, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 26.6, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.067316}}, {'name': 'Q6', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 65.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 65.8, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9238618}}, {'name': 'Q7', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 60.1, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 44.8, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9744844}}, {'name': 'Q8', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 128.5, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 81.5, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.7377882}}, {'name': 'Q9', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 83.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 44.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.96344}}, {'name': 'Q10', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 68.1, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 59.8, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9451187}}, {'name': 'Q11', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 90.7, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 39.9, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9968105}}, {'name': 'Q12', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 94.9, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 65.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.7600629}}, {'name': 'Q13', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 40.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 23.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9684653}}], 'backend': 'ibmq_16_melbourne'}
+
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+measure g[3] -> c[3];
+measure g[13] -> c[13];
+({'qasms': [{'qasm': '\ninclude "qelib1.inc";\nqreg g[14];\ncreg c[14];\nh g[1];\ncx g[1], g[2];\ncx g[2], g[3];\nz g[13];\ncx g[13], g[1];\nh g[13];\nh g[2];\nmeasure g[1] -> c[1];\nmeasure g[2] -> c[2];\nmeasure g[3] -> c[3];\nmeasure g[13] -> c[13];', 'status': 'WORKING_IN_PROGRESS', 'executionId': '5cfcf23634eecc006fd430d8'}], 'shots': 1024, 'backend': {'id': '5ba502d0986f16003ea56c87', 'name': 'ibmq_16_melbourne'}, 'status': 'RUNNING', 'usedCredits': 3, 'creationDate': '2019-06-09T11:49:10.012Z', 'deleted': False, 'id': '5cfcf23634eecc006fd430d7', 'userId': '5ce406695a01ab007886b87b', 'infoQueue': {'status': 'PENDING_IN_QUEUE', 'position': 8}}, <ibmqx_state.IBMQXState object at 0x1130d8a90>)
+------------ message: 11, server publication: 1, Bell state: 3 ------------
+h (1) + 1.000|00000000000000> = + 1.000|00000000000000> + 1.000|01000000000000>
+
+normalizing factor: 0.7071067811865475
+
+|g> = + 0.707|00000000000000> + 0.707|01000000000000>
+
+cx (1 -> 2) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+cx (1 -> 2) + 0.707|01000000000000> = + 0.707|01100000000000>
+
+normalizing factor: 1.0000000000000002
+
+|g> = + 0.707|00000000000000> + 0.707|01100000000000>
+
+cx (2 -> 3) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+cx (2 -> 3) + 0.707|01100000000000> = + 0.707|01110000000000>
+
+normalizing factor: 1.0
+
+|g> = + 0.707|00000000000000> + 0.707|01110000000000>
+
+z (13) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+z (13) + 0.707|01110000000000> = + 0.707|01110000000000>
+
+normalizing factor: 1.0
+
+|g> = + 0.707|00000000000000> + 0.707|01110000000000>
+
+cx (13 -> 1) + 0.707|00000000000000> = + 0.707|00000000000000>
+
+cx (13 -> 1) + 0.707|01110000000000> = + 0.707|01110000000000>
+
+normalizing factor: 1.0
+
+|g> = + 0.707|00000000000000> + 0.707|01110000000000>
+
+h (13) + 0.707|00000000000000> = + 0.707|00000000000000> + 0.707|00000000000001>
+
+h (13) + 0.707|01110000000000> = + 0.707|01110000000000> + 0.707|01110000000001>
+
+normalizing factor: 0.7071067811865475
+
+|g> = + 0.500|00000000000000> + 0.500|00000000000001> + 0.500|01110000000000> + 0.500|01110000000001>
+
+h (2) + 0.500|00000000000000> = + 0.500|00000000000000> + 0.500|00100000000000>
+
+h (2) + 0.500|00000000000001> = + 0.500|00000000000001> + 0.500|00100000000001>
+
+h (2) + 0.500|01110000000000> = - 0.500|01110000000000> + 0.500|01010000000000>
+
+h (2) + 0.500|01110000000001> = - 0.500|01110000000001> + 0.500|01010000000001>
+
+normalizing factor: 0.7071067811865475
+
+|g> = + 0.354|00000000000000> + 0.354|00100000000000> + 0.354|00000000000001> + 0.354|00100000000001> - 0.354|01110000000000> + 0.354|01010000000000> - 0.354|01110000000001> + 0.354|01010000000001>
+
+z (3) + 0.354|00000000000000> = + 0.354|00000000000000>
+
+z (3) + 0.354|00100000000000> = + 0.354|00100000000000>
+
+z (3) + 0.354|00000000000001> = + 0.354|00000000000001>
+
+z (3) + 0.354|00100000000001> = + 0.354|00100000000001>
+
+z (3) - 0.354|01110000000000> = + 0.354|01110000000000>
+
+z (3) + 0.354|01010000000000> = - 0.354|01010000000000>
+
+z (3) - 0.354|01110000000001> = + 0.354|01110000000001>
+
+z (3) + 0.354|01010000000001> = - 0.354|01010000000001>
+
+normalizing factor: 1.0000000000000002
+
+|g> = + 0.354|00000000000000> + 0.354|00100000000000> + 0.354|00000000000001> + 0.354|00100000000001> + 0.354|01110000000000> - 0.354|01010000000000> + 0.354|01110000000001> - 0.354|01010000000001>
+
+x (3) + 0.354|00000000000000> = + 0.354|00010000000000>
+
+x (3) + 0.354|00100000000000> = + 0.354|00110000000000>
+
+x (3) + 0.354|00000000000001> = + 0.354|00010000000001>
+
+x (3) + 0.354|00100000000001> = + 0.354|00110000000001>
+
+x (3) + 0.354|01110000000000> = + 0.354|01100000000000>
+
+x (3) - 0.354|01010000000000> = - 0.354|01000000000000>
+
+x (3) + 0.354|01110000000001> = + 0.354|01100000000001>
+
+x (3) - 0.354|01010000000001> = - 0.354|01000000000001>
+
+normalizing factor: 1.0
+
+|g> = + 0.354|00010000000000> + 0.354|00110000000000> + 0.354|00010000000001> + 0.354|00110000000001> + 0.354|01100000000000> - 0.354|01000000000000> + 0.354|01100000000001> - 0.354|01000000000001>
+
+normalizing factor: 1.414213562373095
+
+|g> = + 0.500|00010000000000> + 0.500|00110000000000> + 0.500|00010000000001> + 0.500|00110000000001>
+
+normalizing factor: 1.414213562373095
+
+|g> = + 0.707|00010000000000> + 0.707|00010000000001>
+
+normalizing factor: 1.0000000000000002
+
+|g> = + 0.707|00010000000000> + 0.707|00010000000001>
+
+normalizing factor: 1.414213562373095
+
+|g> = + 1.000|00010000000001>
+
+post selecting for qubit's values: {1: '1', 2: '1', 3: '0'}
+|g> =
+
+Initializing IBMQX state:
+
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h (1)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx (1 -> 2)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx (2 -> 3)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z (13)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx (13 -> 1)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h (13)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h (2)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z (3)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z g[3];
+x (3)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z g[3];
+x g[3];
+m (1)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z g[3];
+x g[3];
+measure g[1] -> c[1];
+m (2)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z g[3];
+x g[3];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+m (3)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z g[3];
+x g[3];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+measure g[3] -> c[3];
+m (13)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z g[3];
+x g[3];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+measure g[3] -> c[3];
+measure g[13] -> c[13];
+IBMQX API auth success.
+
+{'qubits': 14, 'gates': 13, 'processor': 'ibmq_16_melbourne'}
+{'lastUpdateDate': '2019-06-09T06:33:12.000Z', 'fridgeParameters': {'cooldownDate': '2018-07-10', 'Temperature': {'date': '2019-06-09T08:39:05Z', 'value': None, 'unit': 'K'}}, 'qubits': [{'name': 'Q0', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 21.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 48, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.1002374}}, {'name': 'Q1', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 141.2, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 69.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.2385416}}, {'name': 'Q2', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 155.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 84.7, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.0329076}}, {'name': 'Q3', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 47.6, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 72.9, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.8961749}}, {'name': 'Q4', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 33, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 62.6, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.0264519}}, {'name': 'Q5', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 53.1, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 26.6, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 5.067316}}, {'name': 'Q6', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 65.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 65.8, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9238618}}, {'name': 'Q7', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 60.1, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 44.8, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9744844}}, {'name': 'Q8', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 128.5, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 81.5, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.7377882}}, {'name': 'Q9', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 83.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 44.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.96344}}, {'name': 'Q10', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 68.1, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 59.8, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9451187}}, {'name': 'Q11', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 90.7, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 39.9, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9968105}}, {'name': 'Q12', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 94.9, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 65.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.7600629}}, {'name': 'Q13', 'buffer': {'date': '2019-06-09T06:13:34Z', 'value': 10, 'unit': 'ns'}, 'gateTime': {'date': '2019-06-09T06:13:34Z', 'value': 100, 'unit': 'ns'}, 'T2': {'date': '2019-06-09T06:33:12Z', 'value': 40.8, 'unit': 'µs'}, 'T1': {'date': '2019-06-09T06:32:00Z', 'value': 23.3, 'unit': 'µs'}, 'frequency': {'date': '2019-06-09T06:13:34Z', 'units': 'GHz', 'value': 4.9684653}}], 'backend': 'ibmq_16_melbourne'}
+
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg g[14];
+creg c[14];
+h g[1];
+cx g[1], g[2];
+cx g[2], g[3];
+z g[13];
+cx g[13], g[1];
+h g[13];
+h g[2];
+z g[3];
+x g[3];
+measure g[1] -> c[1];
+measure g[2] -> c[2];
+measure g[3] -> c[3];
+measure g[13] -> c[13];
+({'qasms': [{'qasm': '\ninclude "qelib1.inc";\nqreg g[14];\ncreg c[14];\nh g[1];\ncx g[1], g[2];\ncx g[2], g[3];\nz g[13];\ncx g[13], g[1];\nh g[13];\nh g[2];\nz g[3];\nx g[3];\nmeasure g[1] -> c[1];\nmeasure g[2] -> c[2];\nmeasure g[3] -> c[3];\nmeasure g[13] -> c[13];', 'status': 'WORKING_IN_PROGRESS', 'executionId': '5cfcf23906c6bc0073aab1b8'}], 'shots': 1024, 'backend': {'id': '5ba502d0986f16003ea56c87', 'name': 'ibmq_16_melbourne'}, 'status': 'RUNNING', 'usedCredits': 3, 'creationDate': '2019-06-09T11:49:13.490Z', 'deleted': False, 'id': '5cfcf23906c6bc0073aab1b7', 'userId': '5ce406695a01ab007886b87b', 'infoQueue': {'status': 'PENDING_IN_QUEUE', 'position': 9}}, <ibmqx_state.IBMQXState object at 0x1130d8780>)
+----------------------------------------
+method         time
+----------------------------------------
+h              4.874706268310547 ms
+cx             0.7274150848388672 ms
+z              0.49567222595214844 ms
+m              1.8668174743652344 ms
+post_select    0.13566017150878906 ms
+execute        14034.780740737915 ms
+x              0.37598609924316406 ms

@@ -3,6 +3,13 @@ import functools as ft
 import numpy as np
 from numpy import linalg
 import matplotlib.pyplot as plt
+from qiskit.visualization import (
+    plot_state_city,
+    plot_bloch_multivector,
+    plot_state_paulivec,
+    plot_state_hinton,
+    plot_state_qsphere
+)
 
 # Simulated receiver qubit tomography
 
@@ -56,23 +63,27 @@ ghz_like_bloch_vectors_2_3 = np.array([[-0.080078125, -0.041015625, 0.04296875],
 
 # Real server qubit tomography
 
+# ghz-like message 00 observation
+ghz_like_real_bloch_vectors_2_0 = np.array([[-0.373046875, 0.134765625, -0.138671875], [-0.47265625, 0.03515625, -0.1328125], [-0.328125, -0.091796875, -0.095703125], [-0.296875, -0.177734375, -0.1875], [-0.22265625, -0.279296875, -0.115234375], [-0.037109375, -0.341796875, -0.052734375], [0.0078125, -0.3203125, -0.068359375], [0.158203125, -0.306640625, -0.14453125], [0.310546875, -0.24609375, -0.080078125], [0.33203125, -0.25, -0.177734375], [0.388671875, -0.203125, -0.51953125], [0.486328125, -0.04296875, -0.19921875], [0.3984375, 0.05859375, -0.060546875], [0.287109375, 0.220703125, -0.17578125], [0.17578125, 0.37109375, 0.095703125], [-0.01171875, 0.326171875, 0.017578125], [-0.013671875, 0.341796875, 0.08984375], [-0.060546875, 0.169921875, -0.0234375], [-0.18359375, 0.19140625, 0.1171875], [-0.09375, 0.044921875, -0.083984375], [-0.396484375, 0.130859375, 0.021484375]])
+
 cases = [
-    ghz_bloch_vectors_2_0,
-    ghz_bloch_vectors_2_1,
-    ghz_bloch_vectors_2_2,
-    ghz_bloch_vectors_2_3,
-    ghz_bloch_vectors_3_0,
-    ghz_bloch_vectors_3_1,
-    ghz_bloch_vectors_3_2,
-    ghz_bloch_vectors_3_3,
-    ghz_bloch_vectors_3_4,
-    ghz_bloch_vectors_3_5,
-    ghz_bloch_vectors_3_6,
-    ghz_bloch_vectors_3_7,
-    ghz_like_bloch_vectors_2_0,
-    ghz_like_bloch_vectors_2_1,
-    ghz_like_bloch_vectors_2_2,
-    ghz_like_bloch_vectors_2_3
+    # ghz_bloch_vectors_2_0,
+    # ghz_bloch_vectors_2_1,
+    # ghz_bloch_vectors_2_2,
+    # ghz_bloch_vectors_2_3,
+    # ghz_bloch_vectors_3_0,
+    # ghz_bloch_vectors_3_1,
+    # ghz_bloch_vectors_3_2,
+    # ghz_bloch_vectors_3_3,
+    # ghz_bloch_vectors_3_4,
+    # ghz_bloch_vectors_3_5,
+    # ghz_bloch_vectors_3_6,
+    # ghz_bloch_vectors_3_7,
+    # ghz_like_bloch_vectors_2_0,
+    # ghz_like_bloch_vectors_2_1,
+    # ghz_like_bloch_vectors_2_2,
+    # ghz_like_bloch_vectors_2_3,
+    ghz_like_real_bloch_vectors_2_0
 ]
 
 for bloch_vectors in cases:
@@ -137,3 +148,16 @@ for bloch_vectors in cases:
 
     plt.title("Reconstructed Bloch vector")
     plt.show()
+
+    city_fig = plot_state_city(density_matrix)
+    city_fig.show()
+    qsphere_fig = plot_state_qsphere(density_matrix)
+    qsphere_fig.show()
+    multi_fig = plot_bloch_multivector(density_matrix)
+    multi_fig.show()
+    paulivec_fig = plot_state_paulivec(density_matrix)
+    paulivec_fig.show()
+    hinton_fig = plot_state_hinton(density_matrix)
+    hinton_fig.show()
+
+

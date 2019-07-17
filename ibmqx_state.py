@@ -1,16 +1,10 @@
 import numpy as np
+import datetime
+from retrying import retry
 from IBMQuantumExperience import IBMQuantumExperience
 from ket import ONE
 from profiler import normalize_print_and_get_requirements
-
-# GitHub Account
-# API_TOKEN = 'a0f9090f4b9b0a7f86cb31848730654bb4dbc35aab364a7d728162c96b264752d413b88daea7303c87f12e0a719345119c0f8a880a27d73b998887664a989fce'
-
-# UWaterloo Account
-API_TOKEN = 'c05e0105601b0c1d7e68e294844fdc5615b42f53b6d6a2bb5d6181206fcaec4753276e3bf4bb1eca8cf2bbf179f15b8ecee6df026b13fb8350df2172a6af23a5'
-
-# Dr. Farouk's Account
-# API_TOKEN = '033df3fead612eb383875727dfe1dbb6022cbd44e1a23410fec2db9f5d09b6e465cf4d7944cd98da84ca65e5b90e77db05d498b70c997989bae6f7d3827c09e9'
+import numpy as np
 
 
 class BackendException(Exception):
@@ -20,12 +14,20 @@ class BackendException(Exception):
     pass
 
 
+def retry_if_backend_error(exception):
+    print(str(exception))
+    if isinstance(exception, BackendException):
+        print("Waiting 2^x * 100000 milliseconds between each retry")
+        return True
+    return False
+
+
 class IBMQXState:
     """
     A class that represents a quantum system being run on IBM's quantum computer platform.
     """
 
-    def __init__(self, ket_list=[], num_qubits=1, symbol='q', qasm=None, device='ibmqx4', api=None):
+    def __init__(self, ket_list=[], num_qubits=1, symbol='q', qasm=None, device='ibmqx4', api=None, api_token=None):
         """
         Initializes a quantum state with the given parameters.
 
@@ -34,6 +36,8 @@ class IBMQXState:
         :param symbol: The identifier for this quantum state.
         :param qasm: Predefined qasm provided to initialization.
         :param device: The IBM device to execute on.
+        :param api: A pre-initialized api.
+        :param api_token: The IBMQX access token for the user.
         :raises: ValueError
         """
 
@@ -44,10 +48,15 @@ class IBMQXState:
         if num_qubits > 5 and (device in ['ibmqx4', 'ibmqx2']):
             raise ValueError("This device only supports 5 qubit states")
 
+        if api_token:
+            self.api_token = api_token
         if api:
             self.api = api
         else:
             self.api = None
+
+            if not api_token:
+                raise ValueError("Either an initialized api or api token is required")
 
         self.num_qubits = num_qubits
         self.symbol = symbol
@@ -64,16 +73,19 @@ class IBMQXState:
             'processor': device
         }
 
+        self.jobs = []
+
+        self._connect()
+
         print("Initializing IBMQX state:")
         self.print()
 
-    @staticmethod
-    def _test_api_auth_token():
+    def _test_api_auth_token(self):
         """
         Authentication with Quantum Experience Platform
         :return: IBMQX Credentials
         """
-        api = IBMQuantumExperience(API_TOKEN)
+        api = IBMQuantumExperience(self.api_token)
         credential = api.check_credentials()
 
         return credential
@@ -83,15 +95,16 @@ class IBMQXState:
         Attempt to connect to the Quantum Experience Platform
         :return:
         """
-        connection_success = IBMQXState._test_api_auth_token()
+        connection_success = self._test_api_auth_token()
 
         if connection_success:
-            self.api = IBMQuantumExperience(API_TOKEN)
+            self.api = IBMQuantumExperience(self.api_token)
             print("IBMQX API auth success.")
         else:
             print("IBMQX API auth failure.")
 
     @normalize_print_and_get_requirements
+    @retry(retry_on_exception=retry_if_backend_error, wait_exponential_multiplier=100000)
     def execute(self, shots=1024):
         """
         Executes the QASM built by calls to this object.
@@ -101,14 +114,42 @@ class IBMQXState:
         if not self.api:
             self._connect()
         if not self.device == 'ibmq_qasm_simulator':
-            results = self.api.run_job([{'qasm': self.qasm}], self.device, shots)
+            running_jobs = self._get_running_jobs()
+            if len(running_jobs) < 5:
+                results = self.api.run_job([{'qasm': self.qasm}], self.device, shots)
+                print("Submitting job to {0} at {1}", self.device, datetime.datetime.now())
+            else:
+                raise BackendException(
+                    "Maximum number of queued experiments reached for {0}".format(
+                        self.device
+                    )
+                )
         else:
-            results = self.api.run_experiment(self.qasm, self.device, shots, self.symbol, timeout=60)
+            results = self.api.run_experiment(self.qasm, self.device, shots, self.symbol, timeout=10000)
         if 'error' in results:
             raise BackendException(
                 "Error thrown by backend {0} system: {1}".format(self.device, results['error']['message'])
             )
+        self.jobs = self.jobs + results['qasms']
         return results
+
+    def _get_running_jobs(self):
+        if not self.api:
+            self._connect()
+        running_jobs = []
+        for job in self.api.get_jobs():
+            if job["status"] == "RUNNING":
+                running_jobs.append(job)
+        return running_jobs
+
+    def _get_completed_jobs(self):
+        if not self.api:
+            self._connect()
+        jobs = []
+        for job in self.api.get_jobs():
+            if job["status"] == "COMPLETED":
+                jobs.append(job)
+        return jobs
 
     @normalize_print_and_get_requirements
     def barrier(self, qubit=None):
@@ -286,7 +327,7 @@ class IBMQXState:
         """
         print(self.requirements)
 
-    def tomography(self, qubit, phases, shots):
+    def tomography(self, qubit, phases, shots, continue_from=1):
         """
         Replicates the current circuit and performs measurements in each of the three orthogonal axes of the Bloch
         sphere to determine the qubit's state.
@@ -294,17 +335,24 @@ class IBMQXState:
         :param qubit: The target qubit.
         :param phases: The number of relative phases to measure with respect to each axis.
         :param shots: The number of times to run each phase measurement circuit.
+        :param continue_from: Where to continue the tomography algorithm from in the case
+        that it has been split up over time.
         :return: The results from each circuit.
         """
 
         results = []
+        bloch_vectors = []
 
         self._connect()
 
-        bloch_vector = ['x', 'y', 'z']
         exp_vector = range(0, phases)
 
-        for index in exp_vector:
+        if continue_from:
+            index = continue_from
+        else:
+            index = 0
+
+        while index < len(exp_vector):
             phase = 2 * np.pi * index / (len(exp_vector) - 1)
             index += 1
 
@@ -315,7 +363,8 @@ class IBMQXState:
                 symbol=self.symbol,
                 qasm=self.qasm,
                 device=self.device,
-                api=self.api
+                api=self.api,
+                api_token=self.api_token
             )
 
             x_state.u1(phase, qubit)
@@ -331,7 +380,8 @@ class IBMQXState:
                 symbol=self.symbol,
                 qasm=self.qasm,
                 device=self.device,
-                api=self.api
+                api=self.api,
+                api_token=self.api_token
             )
 
             y_state.u1(phase, qubit)
@@ -348,7 +398,8 @@ class IBMQXState:
                 symbol=self.symbol,
                 qasm=self.qasm,
                 device=self.device,
-                api=self.api
+                api=self.api,
+                api_token=self.api_token
             )
 
             z_state.u1(phase, qubit)
@@ -359,6 +410,14 @@ class IBMQXState:
             results.append(y_state.execute(shots=shots))
             results.append(z_state.execute(shots=shots))
 
+            if self.device == 'ibmq_qasm_simulator':
+                bloch_vectors = IBMQXState._analyze_tomographic_results(qubit, exp_vector, results)
+
+        return results, bloch_vectors
+
+    @staticmethod
+    def _analyze_tomographic_results(qubit, exp_vector, results):
+        bloch_vector = ['x', 'y', 'z']
         bloch_vectors = []
         for exp_index in exp_vector:
             bloch = [0, 0, 0]
@@ -379,7 +438,34 @@ class IBMQXState:
         print("Observed Bloch vectors:")
         print(bloch_vectors)
 
-        return results, bloch_vectors
+        return bloch_vectors
+
+    @staticmethod
+    def post_analyze_tomographic_results(qubit, exp_vector, results):
+        bloch_vector = ['x', 'y', 'z']
+        bloch_vectors = []
+        for exp_index in exp_vector:
+            bloch = [0, 0, 0]
+            for bloch_index in range(len(bloch_vector)):
+                num_zero = 0
+                num_one = 0
+                circuit_index = 3 * exp_index + bloch_index
+                data = results[circuit_index]['result']['data']['counts']
+                labels = list(data.keys())
+                values = list(data.values())
+                for readout in range(len(labels)):
+                    qubit_readout = labels[readout][-(qubit + 2)]
+                    if qubit_readout == '0':
+                        num_zero += values[readout]
+                    elif qubit_readout == '1':
+                        num_one += values[readout]
+                bloch[bloch_index] = num_zero/(num_zero+num_one) - num_one/(num_zero+num_one)
+            bloch_vectors.append(bloch)
+
+        print("Observed Bloch vectors:")
+        print(bloch_vectors)
+
+        return bloch_vectors
 
     def print(self):
         """

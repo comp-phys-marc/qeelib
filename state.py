@@ -346,7 +346,6 @@ class State:
         for ket in self.kets:
             ket.print()
         print("\n")
-
     
     def get_density_matrix(self, qubit):
         """
