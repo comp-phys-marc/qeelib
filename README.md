@@ -1,4 +1,4 @@
-# QEDlib module (Python)
+# QEElib module (Python)
 
 A quantum computing simulation abstraction library written in Python.
 
@@ -15,7 +15,7 @@ apt-get install git
 ### Cloning:
 
 ```
-git clone https://gitlab.com/QuantumEmulator/qedlib.git
+git clone https://gitlab.com/QuantumEmulator/qeelib.git
 ```
 
 # Documentation
