@@ -55,8 +55,8 @@ class IBMQXState:
         else:
             self.api = None
 
-            if not api_token:
-                raise ValueError("Either an initialized api or api token is required")
+            # if not api_token:
+            #     raise ValueError("Either an initialized api or api token is required")
 
         self.num_qubits = num_qubits
         self.symbol = symbol
@@ -75,7 +75,8 @@ class IBMQXState:
 
         self.jobs = []
 
-        self._connect()
+        if hasattr(self, 'api_token'):
+            self._connect()
 
         print("Initializing IBMQX state:")
         self.print()
