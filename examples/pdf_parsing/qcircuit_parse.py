@@ -73,6 +73,5 @@ state = State(ket_list=[initial_state], num_qubits=len(wires))
 for wire, gates in wires.items():
     for gate in gates:
         getattr(state, gate['name'])(list(wires.keys()).index(wire))
-        print('')
 
 print(state.qasm)

@@ -1,0 +1,92 @@
+/Users/marcusedwards/anaconda3/bin/python3 /Users/marcusedwards/Documents/Projects/qeelib/examples/pdf_parsing/qcircuit_parse.py
+LTPage -
+     - (0, 0)
+LTTextLineHorizontal - None - (146.72, 651.898)
+LTTextBoxHorizontal - H  - (146.72, 651.898)
+LTTextLineHorizontal - None - (196.727, 651.898)
+LTTextBoxHorizontal - H  - (196.727, 651.898)
+LTTextLineHorizontal - None - (172.512, 651.898)
+LTTextBoxHorizontal - Z  - (172.512, 651.898)
+LTTextLineHorizontal - None - (171.751, 632.139)
+LTTextBoxHorizontal - X  - (171.751, 632.139)
+LTTextLineHorizontal - None - (303.133, 87.432)
+LTTextBoxHorizontal - 1  - (303.133, 87.432)
+LTLine - None - (143.731, 663.628)
+LTLine - None - (143.731, 650.842)
+LTLine - None - (143.731, 650.842)
+LTLine - None - (158.799, 650.842)
+LTLine - None - (133.768, 657.235)
+LTLine - None - (169.523, 663.628)
+LTLine - None - (169.523, 650.842)
+LTLine - None - (169.523, 650.842)
+LTLine - None - (183.014, 650.842)
+LTLine - None - (158.799, 657.235)
+LTLine - None - (193.738, 663.628)
+LTLine - None - (193.738, 650.842)
+LTLine - None - (193.738, 650.842)
+LTLine - None - (208.806, 650.842)
+LTLine - None - (183.014, 657.235)
+LTLine - None - (208.806, 657.235)
+LTLine - None - (133.768, 637.476)
+LTLine - None - (168.762, 643.868)
+LTLine - None - (168.762, 631.083)
+LTLine - None - (168.762, 631.083)
+LTLine - None - (183.775, 631.083)
+LTLine - None - (151.265, 637.476)
+LTLine - None - (183.775, 637.476)
+LTLine - None - (201.272, 637.476)
+Initializing IBMQX state:
+
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[3];
+creg c[3];
+h (0)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[3];
+creg c[3];
+h q[0];
+
+z (0)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[3];
+creg c[3];
+h q[0];
+z q[0];
+
+h (0)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[3];
+creg c[3];
+h q[0];
+z q[0];
+h q[0];
+
+x (1)
+IBMQX QASM:
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[3];
+creg c[3];
+h q[0];
+z q[0];
+h q[0];
+x q[1];
+
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[3];
+creg c[3];
+h q[0];
+z q[0];
+h q[0];
+x q[1];
+
+Process finished with exit code 0
