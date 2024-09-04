@@ -150,36 +150,6 @@ class Ket:
         )
         self._val = np.matmul(targeted_gate, self._val)
         return self
-
-    def s(self, qubit):
-        """
-        Performs an S phase shift gate on the target qubit.
-
-        :param qubit: The target qubit.
-        :return: The ket after the operation.
-        """
-        targeted_gate = correct_dimensionality(
-            np.array([1, 0],
-                     [0, complex(0, 1)]),
-            qubit
-        )
-        self._val = np.matmul(targeted_gate, self._val)
-        return self
-
-    def sdg(self, qubit):
-        """
-        Performs an S dagger phase shift gate on the target qubit.
-
-        :param qubit: The target qubit.
-        :return: The ket after the operation.
-        """
-        targeted_gate = correct_dimensionality(
-            np.array([1, 0],
-                     [0, -complex(0, 1)]),
-            qubit
-        )
-        self._val = np.matmul(targeted_gate, self._val)
-        return self
     
     def y(self, qubit):
         """
@@ -189,10 +159,11 @@ class Ket:
         :return: The ket after the operation.
         """
         targeted_gate = correct_dimensionality(
-            np.array([0, -complex(0, 1)],
-                     [complex(0, 1), 0]),
+            np.array([0, -1],
+                     [1, 0]),
             qubit
         )
+        self._coefficient = self._coefficient * complex(0, 1)
         self._val = np.matmul(targeted_gate, self._val)
         return self
         
