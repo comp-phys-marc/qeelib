@@ -3,11 +3,7 @@ from itertools import zip_longest
 from .patterns import INCLUDE, SEMICOLON, QREG, CREG, HEADER, BARRIER, MEASURE, \
     CONTROL_X, PAULI_X, PAULI_Y, PAULI_Z, HADAMARD, SPACE, ASSIGN, OPEN_BRACKET, S, SDG
 from ..state import State
-from ..tensor_state import TensorState
-from ..ibmqx_state import IBMQXState
 from ..ket import Ket, ZERO
-from ..ensemble import Ensemble
-from ..coefficient import Coefficient
 from ..profiler import Profiler
 
 
@@ -40,14 +36,6 @@ class Parser:
 
         self.type = execution_type
 
-        self.ensemble = Ensemble()
-        self._gates = {
-            'ensemble': {
-                CONTROL_X: self.ensemble.cx,
-                MEASURE: self.ensemble.m
-            }
-        }
-
         self.quantum_registers = {}
         self._quantum_register_names = {}
 
@@ -70,31 +58,30 @@ class Parser:
 
         if self.type == 'dirac':
 
-            new_coeff = Coefficient(magnitude=1.00, imaginary=False)
+            new_coeff = complex(1, 0)
             new_ket = Ket(coeff=new_coeff, val=ZERO * qubits)
 
-            self.ensemble.add_subsystem(State(ket_list=[new_ket], num_qubits=qubits, symbol=name), name)
-
-            self.ensemble.subsystems[name].normalize()
+            self.state = State(ket_list=[new_ket], num_qubits=qubits, symbol=name)
 
         elif self.type == 'tensor':
 
-            self.ensemble.add_subsystem(TensorState(ket_list=[], num_qubits=qubits, symbol=name), name)
+            raise Exception('Tensorflow implementation no longer supported.')
 
         elif self.type == 'ibmqx4' or self.type == 'ibmqx4_immediate':
 
-            self.ensemble.add_subsystem(IBMQXState(ket_list=[], num_qubits=qubits, symbol=name, device='ibmqx4'), name)
+            raise Exception('IBM Quantum Experience implementation no longer supported.')
 
         self.quantum_registers[len(self.quantum_registers.keys())] = qubits
         self._quantum_register_names[name] = len(self._quantum_register_names.keys())
 
         self._gates[name] = {
-            PAULI_X: self.ensemble.subsystems[name].x,
-            PAULI_Z: self.ensemble.subsystems[name].z,
-            PAULI_Y: self.ensemble.subsystems[name].y,
-            HADAMARD: self.ensemble.subsystems[name].h,
-            SDG: self.ensemble.subsystems[name].sdg,
-            S: self.ensemble.subsystems[name].s
+            CONTROL_X: self.state.cx,
+            PAULI_X: self.state.x,
+            PAULI_Z: self.state.z,
+            PAULI_Y: self.state.y,
+            HADAMARD: self.state.h,
+            SDG: self.state.sdg,
+            S: self.state.s
         }
 
     def add_classical_reg(self, bits, name):
@@ -119,10 +106,6 @@ class Parser:
         """
         operator = line.split(SPACE)[0]
         method = None
-
-        if operator == CONTROL_X:
-            method = self._gates['ensemble'][operator]
-            return method
 
         for register_name in registers:
             for gate in self._gates[register_name]:
@@ -290,11 +273,10 @@ class Parser:
         bits = self._parse_classical_operands(dest_bits)
 
         register = list(qubits.keys())[0]
-        method = self._gates['ensemble'][MEASURE]
 
         for quantum_register, classical_register in zip_longest(qubits, bits):
             for target_qubit, target_bit in zip_longest(qubits[quantum_register], bits[classical_register]):
-                result = method(quantum_register, target_qubit)
+                result = self._gates[quantum_register][MEASURE](target_qubit)
                 self.classical_registers[classical_register][int(target_bit)] = int(result)
 
         return self.classical_registers
@@ -347,12 +329,12 @@ def _bits_for_reg_init(line):
 
 def run_qasm(qasm, execution_type='dirac'):
     """
-    Parses a QASM code string and runs the code using a QEDlib ensemble of states.
+    Parses a QASM code string and runs the code.
 
     :param qasm: QASM code string.
     :param execution_Type: The backend to execute on.
     :returns: A Parser object containing the final contents of any classical registers,
-    the sizes of each quantum register, and a reference to the final QEDlib ensemble.
+    the sizes of each quantum register, and a reference to the final state.
     """
     profiler = Profiler()  # initialize profiler singleton
 
@@ -367,20 +349,7 @@ def run_qasm(qasm, execution_type='dirac'):
 
     if execution_type == 'ibmqx4_immediate':  # passing off entire program execution to IBM
 
-        parser = Parser(qubits=5, q_name='q', execution_type=execution_type)
-
-        parser.ensemble.add_subsystem(
-            IBMQXState(
-                ket_list=[],
-                num_qubits=5,
-                symbol='q',
-                qasm=qasm,
-                device='ibmqx4'),
-            'q')
-
-        parser.ensemble.execute()
-
-        return parser, profiler
+        raise Exception('IBM Quantum Experience execution no longer supported.')
 
     while len(lines) > 0:
 
