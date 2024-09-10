@@ -22,12 +22,9 @@ def normalize_print_and_get_requirements(func):
         elapsed_time = end_time - start_time
         states = args[0]
         state_type = states.__class__.__name__
-        if state_type in ["State", "IBMQXState"]:
+        if state_type in ["State"]:
             if state_type == "State" and states.kets is not None and len(states.kets) > 0:
                 states.normalize()
-            elif state_type == "IBMQXState" and states.api is not None:
-                states.print_requirements()
-        states.register_requirements()
         states.print()
 
         Profiler().profile_efficiency(func_name, elapsed_time * 1000)

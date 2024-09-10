@@ -1,11 +1,10 @@
-from coefficient import Coefficient
-from ket import Ket
-from ibmqx_state import IBMQXState as State
+from ..ket import Ket
+from ..state import State
 
 
 def controlled_teleportation(shots, bell_state, charlie, theta, phi, lamb):
 
-    initial_coeff = Coefficient(magnitude=1.00, imaginary=False)
+    initial_coeff = complex(1, 0)
     initial_state = Ket(coeff=initial_coeff, val="00000")
     state = State(ket_list=[initial_state], num_qubits=5)
 
