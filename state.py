@@ -108,8 +108,11 @@ class State:
         :param qubit: The target qubit.
         :return: The full quantum state after the operation.
         """
+        new_kets = []
         for ket in self.kets:
-            ket.h(qubit)
+            hadamard_result = ket.h(qubit)
+            new_kets.extend(hadamard_result)
+        self.kets = new_kets
         return self
     
     @normalize_print_and_get_requirements

@@ -1,6 +1,5 @@
-import copy
 import numpy as np
-from linear_algebra import partial_trace, correct_dimensionality
+from linear_algebra import vector_to_bitstring, correct_dimensionality, to_sum_of_basis_kets
 
 ZERO = np.array([1],
                 [0])
@@ -111,6 +110,28 @@ class Ket:
         )
         self._val = np.matmul(targeted_gate, self._val)
         return self
+
+    def s(self, qubit):
+        """
+        Performs an S phase shift gate on the target qubit.
+
+        :param qubit: The target qubit.
+        :return: The ket after the operation.
+        """
+        if vector_to_bitstring(self._val)[qubit] == '1':
+            self._coefficient = self._coefficient * complex(0, 1)
+        return self
+
+    def sdg(self, qubit):
+        """
+        Performs an S dagger phase shift gate on the target qubit.
+
+        :param qubit: The target qubit.
+        :return: The ket after the operation.
+        """
+        if vector_to_bitstring(self._val)[qubit] == '1':
+            self._coefficient = self._coefficient * -complex(0, 1)
+        return self
     
     def cx(self, source, target):
         """
@@ -122,7 +143,6 @@ class Ket:
         :return: The ket after the operation.
         """
 
-        # TODO: make sure this is how iterating over np.array works
         cx_matrix = [[0. for _ in range(len(self._val))] for _ in range(len(self._val))]
 
         for i, row in enumerate(cx_matrix):
@@ -181,7 +201,10 @@ class Ket:
         )
         self._coefficient = self._coefficient / np.sqrt(2)
         self._val = np.matmul(targeted_gate, self._val)
-        return self
+        pos_vals, neg_vals = to_sum_of_basis_kets(self._val)
+
+        res = [Ket(self._coefficient, pv) for pv in pos_vals] + [Ket(-self._coefficient, nv) for nv in neg_vals]
+        return res
 
     def print(self):
         """
