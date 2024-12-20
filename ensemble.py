@@ -1,7 +1,7 @@
 import copy
 from .entanglement import EntangledKet
 from .state import State
-from .tensor_state import TensorState
+from .cirq_state import CirqState
 from .ibmqx_state import IBMQXState
 
 
@@ -74,10 +74,10 @@ class Ensemble:
         :return:
         """
 
-        if isinstance(target_system, TensorState) or isinstance(source_system, TensorState) \
+        if isinstance(target_system, CirqState) or isinstance(source_system, CirqState) \
                 or isinstance(target_system, IBMQXState) or isinstance(source_system, IBMQXState):
 
-            print('interaction between subsystems is not supported for tensor or IBMQX states')
+            print('interaction between subsystems is not supported for Cirq or IBMQX states')
             return self.subsystems[target_system]
 
         alpha_source = None
@@ -136,8 +136,6 @@ class Ensemble:
             subsystem = self.subsystems[symbol]
             if isinstance(subsystem, State):
                 subsystem.print_density_matrices()
-            elif isinstance(subsystem, TensorState):
-                subsystem.print()
 
     def print_max_requirements(self):
         """

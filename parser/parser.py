@@ -3,7 +3,7 @@ from itertools import zip_longest
 from .patterns import INCLUDE, SEMICOLON, QREG, CREG, HEADER, BARRIER, MEASURE, \
     CONTROL_X, PAULI_X, PAULI_Y, PAULI_Z, HADAMARD, SPACE, ASSIGN, OPEN_BRACKET, S, SDG
 from ..state import State
-from ..tensor_state import TensorState
+from ..cirq_state import CirqState
 from ..ibmqx_state import IBMQXState
 from ..ket import Ket, ZERO
 from ..ensemble import Ensemble
@@ -79,7 +79,7 @@ class Parser:
 
         elif self.type == 'tensor':
 
-            self.ensemble.add_subsystem(TensorState(ket_list=[], num_qubits=qubits, symbol=name), name)
+            self.ensemble.add_subsystem(CirqState(ket_list=[], num_qubits=qubits, symbol=name), name)
 
         elif self.type == 'ibmqx4' or self.type == 'ibmqx4_immediate':
 
