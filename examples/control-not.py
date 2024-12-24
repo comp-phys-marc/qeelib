@@ -1,10 +1,9 @@
-from coefficient import Coefficient
-from ket import Ket
-from state import State
+from ..ket import Ket
+from ..state import State
 
 
 def control_not():
-    initial_coeff = Coefficient(magnitude=1.00, imaginary=False)
+    initial_coeff = complex(1, 0)
     initial_state = Ket(coeff=initial_coeff, val="101010010110")
     state = State(ket_list=[initial_state], num_qubits=12)
 
