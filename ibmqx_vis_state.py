@@ -1,4 +1,4 @@
-from ibmqx_state import IBMQXState
+from .ibmqx_state import IBMQXState
 from qiskit import IBMQ
 from qiskit.visualization import(
   plot_state_city,

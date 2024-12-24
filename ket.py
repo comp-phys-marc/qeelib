@@ -1,5 +1,5 @@
 import copy
-from coefficient import Coefficient, ComplexCoefficient
+from .coefficient import Coefficient, ComplexCoefficient
 
 ZERO = "0"
 ONE = "1"

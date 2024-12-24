@@ -2,8 +2,8 @@ import numpy as np
 import datetime
 from retrying import retry
 from IBMQuantumExperience import IBMQuantumExperience
-from ket import ONE
-from profiler import normalize_print_and_get_requirements
+from .ket import ONE
+from .profiler import normalize_print_and_get_requirements
 import numpy as np
 
 

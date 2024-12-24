@@ -1,7 +1,7 @@
 import unittest
-from tests.constants import GENERAL_TEST_QASM, MEASUREMENT_TEST_QASM, EXPECTED_MEASUREMENT, \
+from .constants import GENERAL_TEST_QASM, MEASUREMENT_TEST_QASM, EXPECTED_MEASUREMENT, \
     TEN_Q_CC_QASM_ZERO, TEN_Q_CC_QASM_ONE, GROVER_TEST_QASM
-from parser.parser import run_qasm
+from ..parser.parser import run_qasm
 
 
 class QasmParserTests(unittest.TestCase):
