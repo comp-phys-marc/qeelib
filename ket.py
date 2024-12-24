@@ -1,5 +1,5 @@
 import numpy as np
-from linear_algebra import vector_to_bitstring, correct_dimensionality, to_sum_of_basis_kets
+from .linear_algebra import vector_to_bitstring, correct_dimensionality, to_sum_of_basis_kets
 
 ZERO = np.array([1],
                 [0])

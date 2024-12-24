@@ -3,7 +3,11 @@ from itertools import zip_longest
 from .patterns import INCLUDE, SEMICOLON, QREG, CREG, HEADER, BARRIER, MEASURE, \
     CONTROL_X, PAULI_X, PAULI_Y, PAULI_Z, HADAMARD, SPACE, ASSIGN, OPEN_BRACKET, S, SDG
 from ..state import State
+<<<<<<< HEAD
 from ..cirq_state import CirqState
+=======
+from ..ibmqx_state import IBMQXState
+>>>>>>> debug-build
 from ..ket import Ket, ZERO
 from ..profiler import Profiler
 
@@ -64,10 +68,13 @@ class Parser:
 
             self.state = State(ket_list=[new_ket], num_qubits=qubits, symbol=name)
 
+<<<<<<< HEAD
         elif self.type == 'tensor':
 
             self.ensemble.add_subsystem(CirqState(ket_list=[], num_qubits=qubits, symbol=name), name)
 
+=======
+>>>>>>> debug-build
         elif self.type == 'ibmqx4' or self.type == 'ibmqx4_immediate':
 
             raise Exception('IBM Quantum Experience implementation no longer supported.')
