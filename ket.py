@@ -6,6 +6,7 @@ ZERO = np.array([[1],
 ONE = np.array([[0],
                 [1]])
 
+
 class Ket:
     """
     A class that represents the data associated with a single computatonal basis ket in a quantum state.
