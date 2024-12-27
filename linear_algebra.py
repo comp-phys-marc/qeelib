@@ -2,8 +2,10 @@ from functools import reduce
 import numpy as np
 from copy import deepcopy
 
-I = np.array([1, 0],
-             [0, 1])
+
+I = np.array([[1, 0],
+              [0, 1]])
+
 
 def correct_dimensionality(self, op, qubit):
     """
@@ -20,6 +22,7 @@ def correct_dimensionality(self, op, qubit):
         [(I if q != qubit else op) for q in range(self.num_qubits)]
     )
 
+
 def vector_to_bitstring(vector):
     """
     Converts a vector representation of a state to a bitstring.
@@ -33,6 +36,7 @@ def vector_to_bitstring(vector):
         if row[0] == 1:
             bitstring = f'{i:0{num_qubits}b}'
     return bitstring
+
 
 def to_sum_of_basis_kets(vector):
     """

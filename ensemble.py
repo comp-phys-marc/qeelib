@@ -1,7 +1,7 @@
 import copy
 from .entanglement import EntangledKet
 from .state import State
-from .ibmqx_state import IBMQXState
+from .qiskit_state import QiskitState
 
 
 class Ensemble:
@@ -33,7 +33,7 @@ class Ensemble:
         :return:
         """
         for subsystem in self.subsystems:
-            if isinstance(self.subsystems[subsystem], IBMQXState):
+            if isinstance(self.subsystems[subsystem], QiskitState):
                 print(f'executing {self.subsystems[subsystem].symbol} on {self.subsystems[subsystem].device}...')
                 result = self.subsystems[subsystem].execute()
                 print(result)
@@ -73,9 +73,9 @@ class Ensemble:
         :return:
         """
 
-        if isinstance(target_system, IBMQXState) or isinstance(source_system, IBMQXState):
+        if isinstance(target_system, QiskitState) or isinstance(source_system, QiskitState):
 
-            print('interaction between subsystems is not supported for tensor or IBMQX states')
+            print('interaction between subsystems is not supported for Cirq or IBMQX states')
             return self.subsystems[target_system]
 
         alpha_source = None

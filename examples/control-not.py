@@ -1,6 +1,8 @@
 from ..ket import Ket
 from ..state import State
 
+API_TOKEN = ''
+
 
 def control_not():
     initial_coeff = complex(1, 0)
@@ -14,4 +16,6 @@ def control_not():
     .cx(source=3, target=5)\
     .cx(source=5, target=6)
 
-control_not()
+
+if __name__ == '__main__':
+    control_not()
