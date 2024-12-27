@@ -1,9 +1,8 @@
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
-from qiskit.primitives import StatevectorSampler
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit_ibm_runtime import SamplerV2 as Sampler
+from qiskit_ibm_runtime import Sampler
 from qiskit_ibm_runtime import QiskitRuntimeService
-import numpy as np
+from .profiler import normalize_print_and_get_requirements
 
 
 class QiskitState:
@@ -11,13 +10,16 @@ class QiskitState:
     A class that represents a Qiskit quantum state.
     """
 
-    def __init__(self, ket_list=[], num_qubits=1, symbol='Ψ'):
+    def __init__(self, ket_list=[], num_qubits=1, symbol='q', device='default', api=None, api_token=None):
         """
         Initializes a quantum state with a given number of qubits.
 
         :param ket_list: The kets are only used to print the initial state.
         :param num_qubits: The total number of qubits.
         :param symbol: The identifier for this quantum state.
+        :param device: The IBM device to execute on.
+        :param api: A pre-initialized api.
+        :param api_token: The IBMQX access token for the user.
         :raises: ValueError
         """
 
@@ -27,15 +29,31 @@ class QiskitState:
 
         self.num_qubits = num_qubits
         self.symbol = symbol
+        self.device = device
+
+        if api_token:
+            self.api_token = api_token
+        if api:
+            self.api = api
+        else:
+            self.api = None
+
+            if not api_token:
+                raise ValueError("Either an initialized api or api token is required")
 
         self.requirements = {
-            'floats': self.state.size(),
-            'flops': 0
+            'qubits': self.num_qubits,
+            'gates': 0,
+            'processor': device
         }
+
+        if self.api is None:
+            self._connect()
 
         print("Initializing Qiskit state:")
         self.print()
 
+    @normalize_print_and_get_requirements
     def x(self, qubit):
         """
         Performs a Pauli X gate on the target qubit.
@@ -45,8 +63,10 @@ class QiskitState:
         """
         print("x ({0})".format(qubit))
         self.circuit.x(self.state[qubit])
+        self.register_requirements()
         return self
 
+    @normalize_print_and_get_requirements
     def y(self, qubit):
         """
         Performs a Pauli Y gate on the target qubit.
@@ -56,8 +76,10 @@ class QiskitState:
         """
         print("y ({0})".format(qubit))
         self.circuit.y(self.state[qubit])
+        self.register_requirements()
         return self
 
+    @normalize_print_and_get_requirements
     def z(self, qubit):
         """
         Performs a Pauli Z gate on the target qubit.
@@ -67,8 +89,10 @@ class QiskitState:
         """
         print("z ({0})".format(qubit))
         self.circuit.z(self.state[qubit])
+        self.register_requirements()
         return self
 
+    @normalize_print_and_get_requirements
     def s(self, qubit):
         """
         Performs an S phase shift gate on the target qubit.
@@ -78,8 +102,10 @@ class QiskitState:
         """
         print("s ({0})".format(qubit))
         self.circuit.s(self.state[qubit])
+        self.register_requirements()
         return self
 
+    @normalize_print_and_get_requirements
     def sdg(self, qubit):
         """
         Performs an S dagger phase shift gate on the target qubit.
@@ -89,8 +115,10 @@ class QiskitState:
         """
         print("sdg ({0})".format(qubit))
         self.circuit.sdg(self.state[qubit])
+        self.register_requirements()
         return self
 
+    @normalize_print_and_get_requirements
     def cx(self, source, target):
         """
         Performs a Controlled X gate on the target qubit with the
@@ -102,8 +130,10 @@ class QiskitState:
         """
         print("cx ({0} -> {1})".format(source, target))
         self.circuit.cnot(self.state[source], self.state[target])
+        self.register_requirements()
         return self
 
+    @normalize_print_and_get_requirements
     def h(self, qubit):
         """
         Performs a Hadamard gate on the target qubit.
@@ -113,8 +143,10 @@ class QiskitState:
         """
         print("h ({0})".format(qubit))
         self.circuit.h(self.state[qubit])
+        self.register_requirements()
         return self
 
+    @normalize_print_and_get_requirements
     def m(self, qubit):
         """
         Measures the target qubit.
@@ -124,37 +156,57 @@ class QiskitState:
         """
         print("m ({0})".format(qubit))
         self.circuit.measure(self.state[qubit], qubit)
+        self.register_requirements()
         return self
 
     def execute(self):
-        #TODO: support different backend executions
-
         service = QiskitRuntimeService(channel="ibm_quantum")
 
-        # get the least busy operational quantum hardware backend
-        backend = service.least_busy(operational=True, simulator=False)
-        target = backend.target
+        if self.device == 'default':
+            # get the least busy operational quantum hardware backend
+            backend = service.least_busy(operational=True, simulator=False)
+            target = backend.target
+        else:
+            backend = service.backends(self.device)
+            target = backend.target
 
         # transpile the circuit for the backend
         pass_manager = generate_preset_pass_manager(target=target, optimization_level=3)
         isa_circuit = pass_manager.run(self.circuit)
 
         # run the circuit
-        sampler = Sampler(mode=backend)
+        sampler = Sampler(session=backend)
         job = sampler.run([isa_circuit])
         job_result = job.result()
 
         # return the measurement outcomes
         return job_result
 
+    def _connect(self):
+        """
+        Attempt to connect to the IBM Quantum Platform.
+        :return:
+        """
+        QiskitRuntimeService.save_account(channel="ibm_quantum", token=self.api_token, overwrite=True)
+
     def register_requirements(self):
-        pass
+        """
+        Updates the resources required by the state.
+        """
+        self.requirements['gates'] += 1
 
     def print_requirements(self):
-        pass
+        """
+        Prints the requirements for maintaining the current state of the quantum system.
+        """
+        print()
+        self.print_max_requirements()
 
     def print_max_requirements(self):
-        pass
+        """
+        Prints the requirements for the most expensive state/operation encountered by the class during runtime.
+        """
+        print(self.requirements)
 
     def print_state_vectors(self):
         pass

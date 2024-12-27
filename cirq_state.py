@@ -22,11 +22,6 @@ class CirqState:
         self.num_qubits = num_qubits
         self.symbol = symbol
 
-        self.requirements = {
-            'floats': self.state.size(),
-            'flops': 0
-        }
-
         print("Initializing Cirq state:")
         self.print()
 

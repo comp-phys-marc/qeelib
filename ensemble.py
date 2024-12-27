@@ -2,6 +2,7 @@ import copy
 from .entanglement import EntangledKet
 from .state import State
 from .qiskit_state import QiskitState
+from .cirq_state import CirqState
 
 
 class Ensemble:
@@ -73,7 +74,8 @@ class Ensemble:
         :return:
         """
 
-        if isinstance(target_system, QiskitState) or isinstance(source_system, QiskitState):
+        if (isinstance(target_system, CirqState) or isinstance(source_system, CirqState)
+                or isinstance(target_system, QiskitState) or isinstance(source_system, QiskitState)):
 
             print('interaction between subsystems is not supported for Cirq or IBMQX states')
             return self.subsystems[target_system]
