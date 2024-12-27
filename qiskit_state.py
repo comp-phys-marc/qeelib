@@ -129,7 +129,7 @@ class QiskitState:
         :return: self
         """
         print("cx ({0} -> {1})".format(source, target))
-        self.circuit.cnot(self.state[source], self.state[target])
+        self.circuit.cx(self.state[source], self.state[target])
         self.register_requirements()
         return self
 
@@ -175,7 +175,7 @@ class QiskitState:
         isa_circuit = pass_manager.run(self.circuit)
 
         # run the circuit
-        sampler = Sampler(session=backend)
+        sampler = Sampler(mode=backend)
         job = sampler.run([isa_circuit])
         job_result = job.result()
 
