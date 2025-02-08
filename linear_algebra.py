@@ -7,7 +7,7 @@ I = np.array([[1, 0],
               [0, 1]])
 
 
-def correct_dimensionality(self, op, qubit):
+def correct_dimensionality(op, qubit, num_qubits):
     """
     Performs appropriate Kronecker tensor multiplication of the single qubit
     operator with identities in order to correct the dimensionality of the operator
@@ -19,7 +19,7 @@ def correct_dimensionality(self, op, qubit):
     """
     return reduce(
         lambda state, d_qubit: np.kron(state, d_qubit),
-        [(I if q != qubit else op) for q in range(self.num_qubits)]
+        [(I if q != qubit else op) for q in range(num_qubits)]
     )
 
 
@@ -31,10 +31,10 @@ def vector_to_bitstring(vector):
     :return:
     """
     num_qubits = np.log2(len(vector))
-    bitstring = f'{0:0{num_qubits}b}'
+    bitstring = f'{0:0{int(num_qubits)}b}'
     for i, row in enumerate(vector):
         if row[0] == 1:
-            bitstring = f'{i:0{num_qubits}b}'
+            bitstring = f'{i:0{int(num_qubits)}b}'
     return bitstring
 
 

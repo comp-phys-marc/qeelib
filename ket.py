@@ -105,9 +105,10 @@ class Ket:
         :return: The ket after the operation.
         """
         targeted_gate = correct_dimensionality(
-            np.array([0, 1],
-                     [1, 0]),
-            qubit
+            np.array([[0, 1],
+                     [1, 0]]),
+            qubit,
+            self.num_qubits
         )
         self._val = np.matmul(targeted_gate, self._val)
         return self
@@ -149,7 +150,7 @@ class Ket:
         for i, row in enumerate(cx_matrix):
             label = f'{i:0{self.num_qubits}b}'
             if label[source] == '1':
-                label = label[0:target] + '0' if label[target] == '1' else '1' + label[target+1:]
+                label = label[0:target] + ('0' if label[target] == '1' else '1') + label[target+1:]
             one_position = int(label, 2)
             row[one_position] = 1.
 
@@ -165,9 +166,10 @@ class Ket:
         :return: The ket after the operation.
         """
         targeted_gate = correct_dimensionality(
-            np.array([1, 0],
-                     [0, -1]),
-            qubit
+            np.array([[1, 0],
+                     [0, -1]]),
+            qubit,
+            self.num_qubits
         )
         self._val = np.matmul(targeted_gate, self._val)
         return self
@@ -180,9 +182,10 @@ class Ket:
         :return: The ket after the operation.
         """
         targeted_gate = correct_dimensionality(
-            np.array([0, -1],
-                     [1, 0]),
-            qubit
+            np.array([[0, -1],
+                     [1, 0]]),
+            qubit,
+            self.num_qubits
         )
         self._coefficient = self._coefficient * complex(0, 1)
         self._val = np.matmul(targeted_gate, self._val)
@@ -196,9 +199,10 @@ class Ket:
         :return: The two resulting kets.
         """
         targeted_gate = correct_dimensionality(
-            np.array([1, 1],
-                     [1, -1]),
-            qubit
+            np.array([[1, 1],
+                     [1, -1]]),
+            qubit,
+            self.num_qubits
         )
         self._coefficient = self._coefficient / np.sqrt(2)
         self._val = np.matmul(targeted_gate, self._val)
@@ -211,4 +215,4 @@ class Ket:
         """
         Prints the state.
         """
-        print(self._val)
+        print(f"|{vector_to_bitstring(self._val)}>")

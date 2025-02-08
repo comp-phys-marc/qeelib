@@ -33,7 +33,7 @@ class State:
         :raises: ValueError
         """
         if isinstance(ket, Ket):
-            if len(ket.get_val()) == self.num_qubits:
+            if len(ket.get_val()) == 2**self.num_qubits:
                 self.kets.append(ket)
             else:
                 raise ValueError("setting state with incorrect number of qubits {0} != {1} was attempted".format(len(ket.get_val()), self.num_qubits))
